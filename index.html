@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhou Clessy — Portfolio Marketing Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green-dark:#027545;
+  --green-mid:#4B4028;
+  --brown:#282706;
+  --green-light:#60D8A7;
+  --green-pale:#E8F5EF;
+  --green-bg:#F2FAF6;
+  --cream:#FAFAF7;
+  --text:#1A1A14;
+  --muted:#5A6B5E;
+  --border:#C8DDD2;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;}
+.nav-name{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--green-dark);}
+.nav-links{display:flex;gap:2.5rem;}
+.nav-links a{font-size:0.78rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green-dark);}
+
+/* HERO */
+#hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh;}
+.hero-left{background:var(--green-dark);padding:6rem 4rem;display:flex;flex-direction:column;justify-content:center;}
+.hero-tag{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:2rem;display:flex;align-items:center;gap:0.75rem;}
+.hero-tag::before{content:'';width:32px;height:1px;background:var(--green-light);}
+.hero-title{font-family:'DM Serif Display',serif;font-size:4.5rem;line-height:1.05;color:#fff;margin-bottom:2rem;}
+.hero-title em{font-style:italic;color:var(--green-light);}
+.hero-desc{font-size:0.97rem;line-height:1.9;color:#A8C8B8;margin-bottom:3rem;max-width:420px;}
+.hero-cta{display:inline-flex;align-items:center;gap:0.75rem;background:var(--green-light);color:var(--brown);padding:1rem 2.5rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;cursor:pointer;border:none;transition:all 0.25s;text-decoration:none;width:fit-content;}
+.hero-cta:hover{background:#fff;color:var(--green-dark);}
+.hero-right{background:var(--brown);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;}
+.hero-photo{grid-column:span 2;min-height:380px;background:#3D3A20;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid #4A4520;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;}
+.hero-photo-placeholder{font-family:'DM Serif Display',serif;font-style:italic;color:#6A6440;font-size:1rem;text-align:center;padding:2rem;}
+.hero-stat{padding:2rem 2.5rem;display:flex;flex-direction:column;justify-content:flex-end;border-top:1px solid #4A4520;}
+.hero-stat:first-of-type{border-right:1px solid #4A4520;}
+.hero-stat-num{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--green-light);line-height:1;}
+.hero-stat-lbl{font-size:0.7rem;color:#7A8A70;text-transform:uppercase;letter-spacing:0.1em;margin-top:0.4rem;}
+
+/* MOODBOARD */
+.moodboard{display:grid;grid-template-columns:repeat(9,1fr);height:100px;}
+.mood-cell{position:relative;overflow:hidden;}
+.mood-cell:nth-child(1){background:#027545;}
+.mood-cell:nth-child(2){background:#1A3D2A;}
+.mood-cell:nth-child(3){background:#282706;}
+.mood-cell:nth-child(4){background:#2D4A35;}
+.mood-cell:nth-child(5){background:#014A2C;}
+.mood-cell:nth-child(6){background:#3D2A10;}
+.mood-cell:nth-child(7){background:#1A3D2A;}
+.mood-cell:nth-child(8){background:#282706;}
+.mood-cell:nth-child(9){background:#2A3D20;}
+.mood-label{position:absolute;bottom:8px;left:10px;font-size:0.58rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;}
+
+/* ABOUT */
+#about{display:grid;grid-template-columns:1fr 1fr;}
+.about-left{background:var(--green-pale);padding:6rem 4rem;}
+.about-right{background:var(--cream);padding:6rem 4rem;border-left:1px solid var(--border);}
+.section-eyebrow{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-dark);margin-bottom:1.2rem;}
+.about-title{font-family:'DM Serif Display',serif;font-size:2.8rem;color:var(--text);line-height:1.15;margin-bottom:2rem;}
+.about-text{font-size:0.93rem;line-height:1.95;color:var(--muted);margin-bottom:1.5rem;}
+.about-quote{border-left:3px solid var(--green-dark);padding-left:1.5rem;font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--green-dark);line-height:1.7;margin-top:2.5rem;}
+.tools-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--text);margin-bottom:2rem;}
+.tools-list{display:flex;flex-direction:column;gap:1rem;}
+.tool-row{display:flex;align-items:center;gap:1.25rem;}
+.tool-name{font-size:0.85rem;color:var(--text);min-width:150px;}
+.tool-track{flex:1;height:2px;background:var(--border);}
+.tool-fill{height:100%;background:var(--green-dark);transition:width 1s ease;}
+
+/* PROJETS */
+#projets{padding:6rem 4rem;max-width:1300px;margin:0 auto;}
+.section-header{display:flex;align-items:center;gap:2rem;margin-bottom:4rem;}
+.section-title{font-family:'DM Serif Display',serif;font-size:3rem;color:var(--text);}
+.section-line{flex:1;height:1px;background:var(--border);}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);}
+.proj{background:var(--cream);padding:3.5rem;position:relative;overflow:hidden;transition:background 0.3s;}
+.proj:hover{background:var(--green-pale);}
+.proj.wide{grid-column:span 2;display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;background:var(--green-dark);}
+.proj.wide:hover{background:#016A3D;}
+.proj-num{font-family:'DM Serif Display',serif;font-size:6rem;color:var(--green-pale);position:absolute;top:0rem;right:2rem;line-height:1;opacity:0.5;}
+.proj.wide .proj-num{color:rgba(96,216,167,0.12);}
+.proj-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--green-dark);margin-bottom:0.75rem;}
+.proj.wide .proj-eyebrow{color:var(--green-light);}
+.proj-name{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--text);margin-bottom:1rem;line-height:1.2;}
+.proj.wide .proj-name{color:#fff;}
+.proj-desc{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:1.75rem;}
+.proj.wide .proj-desc{color:#8ABAA0;}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.75rem;}
+.tag{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;padding:0.35rem 0.9rem;background:var(--green-pale);color:var(--green-dark);border:1px solid var(--border);}
+.proj.wide .tag{background:rgba(96,216,167,0.12);color:var(--green-light);border-color:rgba(96,216,167,0.2);}
+.kpis{display:flex;gap:2.5rem;padding-top:1.75rem;border-top:1px solid var(--border);}
+.proj.wide .kpis{border-top-color:rgba(255,255,255,0.1);}
+.kpi-v{font-family:'DM Serif Display',serif;font-size:1.7rem;color:var(--text);}
+.proj.wide .kpi-v{color:var(--green-light);}
+.kpi-l{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.25rem;}
+.proj.wide .kpi-l{color:#6A9A7A;}
+.proj-visual{background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;min-height:260px;font-family:'DM Serif Display',serif;font-style:italic;color:rgba(255,255,255,0.2);font-size:0.9rem;border:1px dashed rgba(96,216,167,0.2);}
+.proj-visual img{width:100%;height:100%;object-fit:cover;}
+
+/* UNIVERS */
+#univers{background:var(--brown);padding:6rem 4rem;}
+.univers-inner{max-width:1300px;margin:0 auto;}
+.univers-title{font-family:'DM Serif Display',serif;font-size:2.5rem;color:var(--green-light);margin-bottom:0.75rem;}
+.univers-sub{color:#7A8A60;font-size:0.92rem;margin-bottom:3.5rem;line-height:1.8;}
+.univers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.univers-card{background:#3D3A20;padding:2.5rem;border-left:3px solid var(--green-dark);transition:border-color 0.3s;}
+.univers-card:hover{border-color:var(--green-light);}
+.univers-dot{width:10px;height:10px;background:var(--green-dark);border-radius:50%;margin-bottom:1.5rem;}
+.univers-card-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--green-light);margin-bottom:0.75rem;}
+.univers-card-text{font-size:0.87rem;color:#8A9A70;line-height:1.8;}
+
+/* CONTACT */
+#contact{background:var(--green-dark);padding:8rem 4rem;}
+.contact-inner{max-width:800px;margin:0 auto;text-align:center;}
+.contact-eyebrow{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--green-light);margin-bottom:1.5rem;}
+.contact-title{font-family:'DM Serif Display',serif;font-size:4rem;color:#fff;margin-bottom:1.5rem;line-height:1.1;}
+.contact-title em{font-style:italic;color:var(--green-light);}
+.contact-sub{color:#8ABAA0;font-size:0.97rem;line-height:1.9;margin-bottom:4rem;}
+.contact-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--green-light);color:var(--brown);padding:1rem 2.5rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;transition:all 0.25s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:#fff;}
+.btn-outline{background:transparent;color:var(--green-light);padding:1rem 2.5rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(96,216,167,0.4);cursor:pointer;transition:all 0.25s;text-decoration:none;display:inline-block;}
+.btn-outline:hover{background:rgba(96,216,167,0.1);}
+.avail{margin-top:3.5rem;display:inline-flex;align-items:center;gap:0.75rem;font-size:0.75rem;color:#6A8A78;letter-spacing:0.1em;text-transform:uppercase;}
+.dot{width:7px;height:7px;background:#60D8A7;border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+footer{text-align:center;padding:2rem;font-size:0.72rem;color:#4A5A48;background:var(--brown);letter-spacing:0.08em;text-transform:uppercase;border-top:1px solid #3A3718;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  #about{grid-template-columns:1fr;}
+  .about-right{border-left:none;border-top:1px solid var(--border);}
+  .projects-grid{grid-template-columns:1fr;}
+  .proj.wide{grid-column:span 1;grid-template-columns:1fr;}
+  .univers-grid{grid-template-columns:1fr;}
+  nav{padding:1rem 1.5rem;}
+  .nav-links{gap:1.5rem;}
+  #projets{padding:4rem 1.5rem;}
+  #univers,#contact{padding:4rem 1.5rem;}
+  .about-left,.about-right{padding:4rem 2rem;}
+  .moodboard{grid-template-columns:repeat(3,1fr);height:auto;}
+  .mood-cell{height:60px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Zhou Clessy</span>
+  <div class="nav-links">
+    <a href="#about">À propos</a>
+    <a href="#projets">Projets</a>
+    <a href="#univers">Univers</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Portfolio 2026</div>
+    <h1 class="hero-title">Marketing<br>Digital<br><em>&amp; Contenu</em></h1>
+    <p class="hero-desc">Community management, e-commerce et création de contenu. Bilingue français–chinois, basée à Paris. Disponible en alternance dès septembre 2026.</p>
+    <a href="#projets" class="hero-cta">Voir mes projets →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo">
+      <!-- Remplace par : <img src="photo.jpg" alt="Zhou Clessy"> -->
+      <div class="hero-photo-placeholder">Insère ta photo ici<br><small style="font-size:0.8rem;color:#5A5430;margin-top:0.5rem;display:block;">Remplace le commentaire par une balise img</small></div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">2+</div>
+      <div class="hero-stat-lbl">Ans d'expérience</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">FR/ZH</div>
+      <div class="hero-stat-lbl">Bilingue</div>
+    </div>
+  </div>
+</div>
+
+<div class="moodboard">
+  <div class="mood-cell"><div class="mood-label">Sport</div></div>
+  <div class="mood-cell"><div class="mood-label">Mode</div></div>
+  <div class="mood-cell"><div class="mood-label">Voyage</div></div>
+  <div class="mood-cell"><div class="mood-label">Escape</div></div>
+  <div class="mood-cell"><div class="mood-label">Gastro</div></div>
+  <div class="mood-cell"><div class="mood-label">Jeux</div></div>
+  <div class="mood-cell"><div class="mood-label">Café</div></div>
+  <div class="mood-cell"><div class="mood-label">Badminton</div></div>
+  <div class="mood-cell"><div class="mood-label">Digital</div></div>
+</div>
+
+<div id="about">
+  <div class="about-left">
+    <div class="section-eyebrow">À propos</div>
+    <h2 class="about-title">Créer du contenu qui engage.</h2>
+    <p class="about-text">Étudiante en Bachelor Marketing Digital à Paris, j'ai développé une double expertise en community management et e-commerce lors de mon alternance chez Tentation — une marque de prêt-à-porter féminin.</p>
+    <p class="about-text">Je pilote les réseaux sociaux, conçois des visuels et gère des campagnes Meta Ads et des boutiques Shopify. Mon profil bilingue français–chinois me permet d'aborder des marchés souvent inexploités.</p>
+    <div class="about-quote">"Ma sensibilité produit me permet de contribuer activement au développement et à la mise en valeur d'une gamme."</div>
+  </div>
+  <div class="about-right">
+    <div class="tools-title">Outils maîtrisés</div>
+    <div class="tools-list">
+      <div class="tool-row"><span class="tool-name">Meta Ads</span><div class="tool-track"><div class="tool-fill" style="width:88%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Canva / Figma</span><div class="tool-track"><div class="tool-fill" style="width:92%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Shopify</span><div class="tool-track"><div class="tool-fill" style="width:82%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Google Analytics</span><div class="tool-track"><div class="tool-fill" style="width:78%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Looker Studio</span><div class="tool-track"><div class="tool-fill" style="width:72%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">SEO / Semrush</span><div class="tool-track"><div class="tool-fill" style="width:68%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">Notion</span><div class="tool-track"><div class="tool-fill" style="width:85%;"></div></div></div>
+      <div class="tool-row"><span class="tool-name">WordPress</span><div class="tool-track"><div class="tool-fill" style="width:70%;"></div></div></div>
+    </div>
+  </div>
+</div>
+
+<section id="projets">
+  <div class="section-header">
+    <h2 class="section-title">Projets</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="proj wide">
+      <div>
+        <div class="proj-num">01</div>
+        <div class="proj-eyebrow">Alternance — Tentation, Beauvais</div>
+        <h3 class="proj-name">Stratégie social media & e-commerce</h3>
+        <p class="proj-desc">Gestion complète des réseaux sociaux (Instagram, TikTok, Facebook), création de contenus visuels, pilotage des campagnes Meta Ads & Google Ads. Animation de la boutique Shopify : fiches produits, merchandising digital, suivi des performances GA4.</p>
+        <div class="tags">
+          <span class="tag">Community Management</span>
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Shopify</span>
+          <span class="tag">Canva</span>
+          <span class="tag">Reels / TikTok</span>
+        </div>
+        <div class="kpis">
+          <div><div class="kpi-v">12 mois</div><div class="kpi-l">Durée</div></div>
+          <div><div class="kpi-v">3</div><div class="kpi-l">Plateformes</div></div>
+          <div><div class="kpi-v">360°</div><div class="kpi-l">Présence digitale</div></div>
+        </div>
+      </div>
+      <div class="proj-visual">
+        <!-- Remplace par : <img src="screenshot-tentation.jpg" alt="Projet Tentation"> -->
+        Screenshots à insérer
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-num">02</div>
+      <div class="proj-eyebrow">Projet créatif personnel</div>
+      <h3 class="proj-name">Campagne Instagram — sneakers lifestyle</h3>
+      <p class="proj-desc">Mini-campagne fictive inspirée de mon univers sport & mode : moodboard, 3 posts Instagram, légendes et stratégie éditoriale ciblée 18–28 ans. Inspirée de mon feed et de ma sensibilité aux marques lifestyle.</p>
+      <div class="tags">
+        <span class="tag">Création de contenu</span>
+        <span class="tag">Stratégie éditoriale</span>
+        <span class="tag">Canva</span>
+      </div>
+      <div class="kpis">
+        <div><div class="kpi-v">3</div><div class="kpi-l">Posts créés</div></div>
+        <div><div class="kpi-v">18–28</div><div class="kpi-l">Cible</div></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="proj-num">03</div>
+      <div class="proj-eyebrow">Expérience retail — Hartford, Paris</div>
+      <h3 class="proj-name">Conseil client bilingue & merchandising</h3>
+      <p class="proj-desc">2 ans de vente en prêt-à-porter féminin : conseil client personnalisé en français et en chinois, mise en valeur des collections, opérations de fidélisation.</p>
+      <div class="tags">
+        <span class="tag">Relation client</span>
+        <span class="tag">Merchandising</span>
+        <span class="tag">Bilingue FR/ZH</span>
+      </div>
+      <div class="kpis">
+        <div><div class="kpi-v">2 ans</div><div class="kpi-l">Expérience</div></div>
+        <div><div class="kpi-v">FR/ZH</div><div class="kpi-l">Langues</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div id="univers">
+  <div class="univers-inner">
+    <div class="section-eyebrow" style="color:var(--green-light);margin-bottom:0.75rem;">Mon univers</div>
+    <h2 class="univers-title">Ce qui m'inspire au quotidien</h2>
+    <p class="univers-sub">Mes centres d'intérêt nourrissent ma créativité et ma sensibilité aux tendances.</p>
+    <div class="univers-grid">
+      <div class="univers-card">
+        <div class="univers-dot"></div>
+        <div class="univers-card-title">Sport & Lifestyle</div>
+        <div class="univers-card-text">Badminton, musculation, sneakers culture — une sensibilité aux marques sport & fashion qui nourrit ma vision du contenu et mon instinct pour les tendances.</div>
+      </div>
+      <div class="univers-card">
+        <div class="univers-dot"></div>
+        <div class="univers-card-title">Voyage & Découverte</div>
+        <div class="univers-card-text">Curiosité pour les cultures et les marchés internationaux. Un atout naturel pour les marques à dimension globale et les stratégies cross-culturelles.</div>
+      </div>
+      <div class="univers-card">
+        <div class="univers-dot"></div>
+        <div class="univers-card-title">Gaming & Expériences</div>
+        <div class="univers-card-text">Escape game, jeux de société, expériences immersives — comprendre l'engagement et le storytelling par le prisme du jeu et de l'interaction.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact">
+  <div class="contact-inner">
+    <div class="contact-eyebrow">Contact</div>
+    <h2 class="contact-title">Travaillons<br><em>ensemble</em></h2>
+    <p class="contact-sub">À la recherche d'une alternance en marketing digital à Paris<br>à partir de septembre 2026. Ouverte à tous secteurs : mode, retail, beauté, lifestyle.</p>
+    <div class="contact-btns">
+      <a href="mailto:clessyzhou.3@gmail.com" class="btn-primary">✉ clessyzhou.3@gmail.com</a>
+      <a href="https://linkedin.com" target="_blank" class="btn-outline">in LinkedIn</a>
+      <!-- Remplace le href par le lien de ton CV hébergé -->
+      <a href="cv_clessy_disney.docx" download class="btn-outline">↓ Télécharger le CV</a>
+    </div>
+    <div class="avail"><span class="dot"></span>Disponible — Septembre 2026</div>
+  </div>
+</div>
+
+<footer>© 2026 Zhou Clessy — Portfolio Marketing Digital — Paris</footer>
+
+</body>
+</html>
