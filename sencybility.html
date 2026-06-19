@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SenCybility — Jeu de cartes cybersécurité · Zhou Clessy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gd: #027545; --br: #282706; --gl: #60D8A7;
+    --gp: #E8F5EF; --cr: #FAFAF7; --tx: #1A1A14;
+    --mu: #5A6B5E; --bo: #C8DDD2; --border: 1px solid #C8DDD2;
+    --sc-purple: #4A3E8C; --sc-orange: #D4691E; --sc-red-dark: #B33A3A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans','Helvetica Neue',sans-serif; background: var(--cr); color: var(--tx); -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--cr); border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 56px; }
+  .nav-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--mu); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-back:hover { color: var(--gd); }
+  .nav-logo { font-family: 'DM Serif Display',serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--gd); text-decoration: none; }
+  .nav-num { font-size: 0.65rem; color: var(--bo); letter-spacing: 0.1em; }
+
+  .project-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; border-bottom: var(--border); }
+  .ph-left { background: var(--sc-purple); padding: 5rem 3.5rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: var(--border); }
+  .ph-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: #B8AEE8; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .ph-eyebrow::before { content: ''; width: 24px; height: 1px; background: #B8AEE8; }
+  .ph-title { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 4vw, 3.3rem); font-weight: 400; line-height: 1.1; color: #fff; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+  .ph-title em { font-style: italic; color: var(--sc-orange); }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ph-tag { font-size: 0.65rem; padding: 4px 10px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .ph-right { background: #2A2350; display: flex; flex-direction: column; }
+  .ph-img-wrap { flex: 1; overflow: hidden; border-bottom: var(--border); display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
+  .ph-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; width: 100%; }
+  .ph-card-mini { aspect-ratio: 2/3; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; text-align: center; padding: 8px; color: #fff; font-weight: 500; }
+  .ph-stats { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; }
+  .ph-stat { background: #2A2350; padding: 1.5rem; }
+  .ph-stat-val { font-family: 'DM Serif Display',serif; font-size: 1.8rem; color: var(--sc-orange); line-height: 1; }
+  .ph-stat-lab { font-size: 0.62rem; color: #9A8FC8; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 2.5rem; border-bottom: var(--border); }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); }
+  .section-num { font-size: 0.65rem; color: var(--bo); }
+
+  .block-title { font-family: 'DM Serif Display',serif; font-size: 1.5rem; color: var(--tx); margin-bottom: 1.25rem; line-height: 1.2; }
+  .block-title em { font-style: italic; color: var(--gd); }
+  .body-text { font-size: 0.9rem; color: var(--mu); line-height: 1.85; margin-bottom: 1rem; }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .info-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.87rem; color: var(--tx); line-height: 1.5; }
+  .info-list li::before { content: '—'; color: var(--gd); flex-shrink: 0; margin-top: 1px; }
+
+  .concept { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .concept-left { padding: 3.5rem; border-right: var(--border); }
+  .concept-right { padding: 3.5rem; background: var(--gp); }
+  .role-card { background: var(--cr); border: var(--border); border-left: 3px solid var(--sc-purple); padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; }
+  .role-name { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sc-purple); margin-bottom: 0.4rem; }
+  .role-person { font-size: 0.9rem; color: var(--tx); font-weight: 500; }
+  .role-card.mine { border-left-color: var(--gd); background: var(--gp); }
+  .role-card.mine .role-name { color: var(--gd); }
+
+  /* ZONES GAME */
+  .zones-grid { display: grid; grid-template-columns: repeat(4,1fr); background: var(--bo); gap: 1px; border-bottom: var(--border); }
+  .zone-cell { background: var(--cr); padding: 2rem 1.5rem; text-align: center; }
+  .zone-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+  .zone-name { font-family: 'DM Serif Display',serif; font-size: 1.1rem; color: var(--sc-purple); margin-bottom: 0.5rem; }
+  .zone-desc { font-size: 0.8rem; color: var(--mu); line-height: 1.6; }
+
+  /* CARTES */
+  .cards-section { padding: 3.5rem; border-bottom: var(--border); background: var(--br); }
+  .cards-section .block-title { color: #fff; }
+  .cards-section .block-title em { color: var(--gl); }
+  .cards-section > .body-text { color: #8ABAA0; max-width: 700px; }
+  .cards-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 2rem; }
+  .game-card { border-radius: 8px; padding: 1.1rem; min-height: 140px; display: flex; flex-direction: column; justify-content: space-between; }
+  .game-card.attack { background: #B33A3A; }
+  .game-card.defense { background: #3D5A9E; }
+  .gc-cost { width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.25); color: #fff; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-bottom: 0.5rem; }
+  .gc-name { font-size: 0.78rem; color: #fff; font-weight: 500; line-height: 1.3; margin-bottom: 0.4rem; }
+  .gc-desc { font-size: 0.65rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+
+  /* RULES */
+  .rules-section { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .rules-left { padding: 3.5rem; border-right: var(--border); }
+  .rules-right { padding: 3.5rem; background: var(--gp); }
+  .rule-step { display: flex; gap: 1rem; margin-bottom: 1.25rem; }
+  .rule-num { font-family: 'DM Serif Display',serif; font-size: 1.4rem; color: var(--sc-purple); opacity: 0.4; flex-shrink: 0; line-height: 1; }
+  .rule-text h4 { font-size: 0.88rem; font-weight: 500; color: var(--tx); margin-bottom: 3px; }
+  .rule-text p { font-size: 0.82rem; color: var(--mu); line-height: 1.6; }
+  .victory-box { background: var(--cr); border: var(--border); border-top: 3px solid var(--gd); padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .victory-box h4 { font-size: 0.85rem; color: var(--gd); margin-bottom: 0.4rem; font-weight: 500; }
+  .victory-box p { font-size: 0.82rem; color: var(--mu); line-height: 1.6; }
+
+  /* ACTIONS */
+  .actions { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .act-left { padding: 3.5rem; border-right: var(--border); }
+  .act-right { padding: 3.5rem; background: var(--gp); }
+  .action-item { display: flex; gap: 1.25rem; padding: 1.1rem 0; border-bottom: var(--border); }
+  .action-item:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sc-purple); flex-shrink: 0; margin-top: 6px; }
+  .action-content h4 { font-size: 0.9rem; font-weight: 500; color: var(--tx); margin-bottom: 4px; }
+  .action-content p { font-size: 0.83rem; color: var(--mu); line-height: 1.7; }
+  .trailer-box { background: var(--br); border-radius: 8px; padding: 2rem; text-align: center; }
+  .trailer-box a { display: inline-flex; align-items: center; gap: 10px; background: var(--gl); color: var(--br); padding: 0.8rem 1.6rem; border-radius: 4px; text-decoration: none; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; }
+  .trailer-box p { color: #8ABAA0; font-size: 0.85rem; margin-bottom: 1.25rem; line-height: 1.6; }
+
+  /* BILAN */
+  .bilan { display: grid; grid-template-columns: 2fr 1fr; border-bottom: var(--border); }
+  .bilan-left { padding: 3.5rem; border-right: var(--border); }
+  .bilan-right { padding: 3.5rem; background: var(--gp); }
+  .bilan-quote { font-family: 'DM Serif Display',serif; font-style: italic; font-size: 1.2rem; color: var(--gd); line-height: 1.6; border-left: 3px solid var(--gd); padding-left: 1.5rem; margin-top: 1.5rem; }
+  .competence-tag { display: inline-block; font-size: 0.65rem; padding: 4px 10px; background: var(--gp); border: 1px solid var(--bo); color: var(--gd); margin: 3px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .project-footer { background: var(--br); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #3D3A20; }
+  .pf-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--gl); text-decoration: none; letter-spacing: 0.06em; opacity: 0.7; transition: opacity 0.2s; }
+  .pf-back:hover { opacity: 1; }
+  .pf-copy { font-size: 0.65rem; color: #4A5A48; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  @media (max-width: 900px) {
+    .project-hero, .concept, .rules-section, .actions, .bilan { grid-template-columns: 1fr; }
+    .ph-left, .concept-left, .rules-left, .act-left, .bilan-left { border-right: none; border-bottom: var(--border); }
+    .zones-grid, .cards-grid { grid-template-columns: repeat(2,1fr); }
+    nav, .section-header { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .ph-left, .concept-left, .concept-right, .rules-left, .rules-right, .act-left, .act-right, .bilan-left, .bilan-right, .zone-cell, .cards-section { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Retour au portfolio</a>
+  <a href="index.html" class="nav-logo">DAYI</a>
+  <span class="nav-num">04 / 04</span>
+</nav>
+
+<!-- HERO -->
+<section class="project-hero">
+  <div class="ph-left">
+    <p class="ph-eyebrow">Projet école · Anglais · Équipe de 5 · 2024</p>
+    <h1 class="ph-title">SenCybility — Jeu de<br><em>cartes cybersécurité</em></h1>
+    <div class="ph-meta">
+      <span class="ph-tag">Game rules manager</span>
+      <span class="ph-tag">Playtest manager</span>
+      <span class="ph-tag">English</span>
+      <span class="ph-tag">Serious game</span>
+      <span class="ph-tag">Game design</span>
+    </div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-img-wrap">
+      <div class="ph-cards-row">
+        <div class="ph-card-mini" style="background:#B33A3A">DDoS<br>Attack</div>
+        <div class="ph-card-mini" style="background:#3D5A9E">VPN</div>
+        <div class="ph-card-mini" style="background:#B33A3A">Zero Day<br>Exploit</div>
+      </div>
+    </div>
+    <div class="ph-stats">
+      <div class="ph-stat"><div class="ph-stat-val">24+</div><div class="ph-stat-lab">Cartes</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">4</div><div class="ph-stat-lab">Zones de jeu</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">10–25'</div><div class="ph-stat-lab">Durée partie</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<div class="section-header">
+  <span class="section-label">Concept & équipe</span>
+  <span class="section-num">C1.2 · C1.4</span>
+</div>
+<section class="concept">
+  <div class="concept-left">
+    <h2 class="block-title">Apprendre la cybersécurité<br><em>en s'affrontant.</em></h2>
+    <p class="body-text">
+      SenCybility est un serious game 1v1 conçu pour enseigner les bases de la cybersécurité
+      à de jeunes étudiants : un joueur incarne l'Attaquant qui tente de compromettre quatre
+      zones critiques (Mots de passe, Réseau, Système, Données), l'autre le Défenseur qui
+      doit établir et maintenir une sécurité complète.
+    </p>
+    <p class="body-text">
+      Le projet a été mené en anglais, conçu pour un public de débutants en cybersécurité.
+      Chaque carte s'inspire d'une attaque ou d'une défense réelle (Stuxnet, RockYou,
+      EternalBlue, AES-256) pour ancrer l'apprentissage dans des cas concrets.
+    </p>
+    <ul class="info-list">
+      <li>Énergie comme ressource partagée — chaque carte a un coût</li>
+      <li>Toutes les cartes visibles — accessibilité pédagogique assumée</li>
+      <li>Add-on digital pour jouer à distance avec code de partie</li>
+      <li>Playtesté en classe sur plusieurs sessions</li>
+    </ul>
+  </div>
+  <div class="concept-right">
+    <h2 class="block-title">Répartition <em>des rôles</em></h2>
+    <div class="role-card mine">
+      <div class="role-name">Mon rôle</div>
+      <div class="role-person">Game rules manager & Playtest manager</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Topic specialist</div>
+      <div class="role-person">Marceau</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Game design manager</div>
+      <div class="role-person">Julie</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Game match manager</div>
+      <div class="role-person">Alex</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Digital add-on manager</div>
+      <div class="role-person">Marceau</div>
+    </div>
+    <div class="role-card">
+      <div class="role-name">Captain</div>
+      <div class="role-person">Jean Philippe</div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<div class="section-header">
+  <span class="section-label">Les 4 zones de jeu</span>
+  <span class="section-num">Game design</span>
+</div>
+<section class="zones-grid">
+  <div class="zone-cell">
+    <div class="zone-icon">🔑</div>
+    <div class="zone-name">Passwords</div>
+    <div class="zone-desc">Brute force, credential stuffing vs. password manager, 2FA</div>
+  </div>
+  <div class="zone-cell">
+    <div class="zone-icon">🌐</div>
+    <div class="zone-name">Network</div>
+    <div class="zone-desc">DDoS, ARP spoofing, MITM vs. VPN, firewall, IPS</div>
+  </div>
+  <div class="zone-cell">
+    <div class="zone-icon">💻</div>
+    <div class="zone-name">System</div>
+    <div class="zone-desc">Zero-day, privilege escalation vs. patch update, secure boot</div>
+  </div>
+  <div class="zone-cell">
+    <div class="zone-icon">🗄️</div>
+    <div class="zone-name">Data</div>
+    <div class="zone-desc">SQL injection, data breach vs. encryption, backup, access control</div>
+  </div>
+</section>
+
+<!-- CARTES -->
+<div class="section-header">
+  <span class="section-label">Exemples de cartes</span>
+  <span class="section-num">24+ cartes conçues</span>
+</div>
+<section class="cards-section">
+  <h2 class="block-title">Inspirées de cas <em>réels.</em></h2>
+  <p class="body-text">Chaque carte référence un cas réel de cybersécurité pour ancrer l'apprentissage — un choix pédagogique central que j'ai défendu en tant que rules manager pour garder le jeu crédible et instructif.</p>
+  <div class="cards-grid">
+    <div class="game-card attack">
+      <div><div class="gc-cost">7</div><div class="gc-name">Mirai Botnet</div></div>
+      <div class="gc-desc">Swarm of infected devices floods the network. Inspired by the Mirai Botnet attack.</div>
+    </div>
+    <div class="game-card attack">
+      <div><div class="gc-cost">8</div><div class="gc-name">Stuxnet Precision Attack</div></div>
+      <div class="gc-desc">Ignores all System defenses. Inspired by the Stuxnet attack.</div>
+    </div>
+    <div class="game-card defense">
+      <div><div class="gc-cost">4</div><div class="gc-name">VPN</div></div>
+      <div class="gc-desc">Secure encrypted tunnel that blocks unauthorized access attempts.</div>
+    </div>
+    <div class="game-card defense">
+      <div><div class="gc-cost">6</div><div class="gc-name">Data Encryption</div></div>
+      <div class="gc-desc">Based on AES-256 encryption, widely used to secure modern systems.</div>
+    </div>
+    <div class="game-card attack">
+      <div><div class="gc-cost">2</div><div class="gc-name">Brute Force Attack</div></div>
+      <div class="gc-desc">Used in real breaches such as the RockYou password leak.</div>
+    </div>
+    <div class="game-card attack">
+      <div><div class="gc-cost">6</div><div class="gc-name">Zero Day Exploit</div></div>
+      <div class="gc-desc">Ignores 100% defense of 1 zone. Inspired by EternalBlue.</div>
+    </div>
+    <div class="game-card defense">
+      <div><div class="gc-cost">1</div><div class="gc-name">Password Manager</div></div>
+      <div class="gc-desc">Reduces attack value of all Password Zone attacks by −1.</div>
+    </div>
+    <div class="game-card defense">
+      <div><div class="gc-cost">5</div><div class="gc-name">Zero-Trust Security</div></div>
+      <div class="gc-desc">Inspired by Google's post-2009 model. All attacks lose −1.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RÈGLES -->
+<div class="section-header">
+  <span class="section-label">Règles du jeu — que j'ai conçues</span>
+  <span class="section-num">Game rules manager</span>
+</div>
+<section class="rules-section">
+  <div class="rules-left">
+    <h2 class="block-title">Structure d'un <em>tour de jeu.</em></h2>
+    <div class="rule-step">
+      <span class="rule-num">01</span>
+      <div class="rule-text"><h4>Energy Phase</h4><p>Le joueur actif gagne +2 Énergie (plafond à 10) pour pouvoir jouer ses cartes.</p></div>
+    </div>
+    <div class="rule-step">
+      <span class="rule-num">02</span>
+      <div class="rule-text"><h4>Action Phase</h4><p>L'Attaquant joue attaques et utilitaires ; le Défenseur joue défenses et utilitaires (une seule défense active par zone).</p></div>
+    </div>
+    <div class="rule-step">
+      <span class="rule-num">03</span>
+      <div class="rule-text"><h4>Resolution Phase</h4><p>En fin de tour Attaquant : comparaison attaque vs défense par zone. Si l'attaque dépasse la défense, l'écart devient des points de compromission.</p></div>
+    </div>
+    <div class="rule-step">
+      <span class="rule-num">04</span>
+      <div class="rule-text"><h4>End of Turn</h4><p>Les effets temporaires expirent, les cartes utilisées sont défaussées.</p></div>
+    </div>
+  </div>
+  <div class="rules-right">
+    <h2 class="block-title">Conditions de <em>victoire.</em></h2>
+    <div class="victory-box">
+      <h4>Victoire Attaquant</h4>
+      <p>Atteindre le niveau de compromission maximal (6) dans les 4 zones simultanément.</p>
+    </div>
+    <div class="victory-box">
+      <h4>Victoire Défenseur</h4>
+      <p>À la fin de n'importe quel tour Attaquant, avoir une défense active et intacte dans les 4 zones.</p>
+    </div>
+    <p class="body-text" style="margin-top:1.5rem">
+      J'ai veillé à ce que l'équilibrage reste lisible pour des débutants : pas de cartes
+      cachées, mécanique de "Used Energy" simple à comprendre, et un système de score
+      plafonné par zone pour éviter les parties interminables.
+    </p>
+  </div>
+</section>
+
+<!-- ACTIONS -->
+<div class="section-header">
+  <span class="section-label">Actions réalisées</span>
+  <span class="section-num">Game rules · Playtest</span>
+</div>
+<section class="actions">
+  <div class="act-left">
+    <h2 class="block-title">Ce que j'ai <em>concrètement fait.</em></h2>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Rédaction des règles complètes</h4>
+        <p>J'ai rédigé l'intégralité du document de règles en anglais : objectifs, setup, système d'énergie, structure de tour, scoring, conditions de victoire et gestion des défausses.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Équilibrage des cartes</h4>
+        <p>Participation à l'ajustement des coûts en énergie et des valeurs d'attaque/défense pour garantir un jeu équilibré entre les deux rôles, en lien avec le game design manager.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Organisation des playtests</h4>
+        <p>J'ai organisé et conduit plusieurs sessions de test en classe avec l'équipe et d'autres étudiants, en observant les points de friction dans la compréhension des règles.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Checklist d'impression du prototype</h4>
+        <p>Co-rédaction de la checklist logistique pour le prototype imprimable : format, couleur, matériel nécessaire, organisation du temps d'impression en classe.</p>
+      </div>
+    </div>
+  </div>
+  <div class="act-right">
+    <h2 class="block-title">Voir le <em>trailer</em></h2>
+    <div class="trailer-box">
+      <p>Une vidéo de présentation du jeu a été réalisée pour démontrer le gameplay et l'add-on digital de SenCybility.</p>
+      <a href="https://youtu.be/T-zPOQjq01I" target="_blank" rel="noopener">▶ Voir le trailer YouTube</a>
+    </div>
+    <p class="body-text" style="margin-top:1.5rem">
+      Le jeu dispose également d'un add-on digital (web app mobile-friendly) permettant
+      de créer une partie à distance via un code unique, de suivre l'énergie et les
+      niveaux de défense en temps réel, et d'accéder au rulebook complet.
+    </p>
+  </div>
+</section>
+
+<!-- BILAN -->
+<div class="section-header">
+  <span class="section-label">Compétences mobilisées & bilan</span>
+</div>
+<section class="bilan">
+  <div class="bilan-left">
+    <h2 class="block-title">Ce que ce projet<br><em>m'a appris.</em></h2>
+    <p class="body-text">
+      En tant que game rules manager, j'ai dû traduire un concept pédagogique complexe
+      (la cybersécurité) en un système de règles simple, équilibré et amusant — un exercice
+      proche de la conception d'une offre produit pour une cible précise : ici, des
+      étudiants débutants en cybersécurité.
+    </p>
+    <p class="body-text">
+      Le rôle de playtest manager m'a appris à recueillir des retours terrain et à itérer
+      rapidement sur un livrable, en observant directement les utilisateurs plutôt qu'en
+      théorisant seule. Cette approche centrée utilisateur est transférable à toute
+      conception de produit ou de contenu marketing.
+    </p>
+    <div class="bilan-quote">
+      "J'ai conçu l'intégralité des règles du jeu en anglais et organisé plusieurs
+      sessions de playtest en classe pour valider et ajuster l'expérience de jeu."
+    </div>
+  </div>
+  <div class="bilan-right">
+    <h2 class="block-title" style="font-size:1.1rem;margin-bottom:1.25rem">Compétences du référentiel</h2>
+    <span class="competence-tag">C1.2 — Conception d'offre</span>
+    <span class="competence-tag">C1.4 — Plan d'action</span>
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--border)">
+      <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--mu);margin-bottom:0.75rem">Compétences transverses</p>
+      <span class="competence-tag">Game design</span>
+      <span class="competence-tag">Rédaction technique EN</span>
+      <span class="competence-tag">Playtest & itération</span>
+      <span class="competence-tag">Travail d'équipe</span>
+    </div>
+  </div>
+</section>
+
+<div class="project-footer">
+  <a href="index.html" class="pf-back">← Retour au portfolio</a>
+  <span class="pf-copy">© 2026 Zhou Clessy</span>
+</div>
+
+</body>
+</html>

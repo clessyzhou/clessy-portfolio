@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zone Grise — Podcast & lancement Instagram · Zhou Clessy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gd: #027545; --br: #282706; --gl: #60D8A7;
+    --gp: #E8F5EF; --cr: #FAFAF7; --tx: #1A1A14;
+    --mu: #5A6B5E; --bo: #C8DDD2; --border: 1px solid #C8DDD2;
+    --zg-red: #C0421C; --zg-cream: #EDEAE3;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans','Helvetica Neue',sans-serif; background: var(--cr); color: var(--tx); -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--cr); border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 56px; }
+  .nav-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--mu); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-back:hover { color: var(--gd); }
+  .nav-logo { font-family: 'DM Serif Display',serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--gd); text-decoration: none; }
+  .nav-num { font-size: 0.65rem; color: var(--bo); letter-spacing: 0.1em; }
+
+  .project-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; border-bottom: var(--border); }
+  .ph-left { background: var(--zg-red); padding: 5rem 3.5rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: var(--border); }
+  .ph-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--zg-cream); opacity: 0.85; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .ph-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--zg-cream); opacity: 0.6; }
+  .ph-logo-badge { display: inline-flex; align-items: center; justify-content: center; background: var(--zg-cream); color: var(--zg-red); font-family: 'DM Serif Display', serif; font-weight: 700; font-size: 1.6rem; padding: 1rem 1.5rem; border-radius: 16px 16px 16px 2px; width: fit-content; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: 0.02em; }
+  .ph-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400; line-height: 1.1; color: #fff; letter-spacing: -0.01em; margin-bottom: 1.25rem; }
+  .ph-title em { font-style: italic; color: var(--zg-cream); opacity: 0.85; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ph-tag { font-size: 0.65rem; padding: 4px 10px; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .ph-right { background: var(--zg-cream); display: flex; flex-direction: column; }
+  .ph-quote-block { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem; text-align: center; }
+  .ph-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.4rem; color: var(--zg-red); line-height: 1.5; }
+  .ph-stats { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; border-top: var(--border); }
+  .ph-stat { background: var(--zg-cream); padding: 1.5rem; }
+  .ph-stat-val { font-family: 'DM Serif Display',serif; font-size: 1.8rem; color: var(--zg-red); line-height: 1; }
+  .ph-stat-lab { font-size: 0.62rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 2.5rem; border-bottom: var(--border); }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); }
+  .section-num { font-size: 0.65rem; color: var(--bo); }
+
+  .block-title { font-family: 'DM Serif Display',serif; font-size: 1.5rem; color: var(--tx); margin-bottom: 1.25rem; line-height: 1.2; }
+  .block-title em { font-style: italic; color: var(--gd); }
+  .body-text { font-size: 0.9rem; color: var(--mu); line-height: 1.85; margin-bottom: 1rem; }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .info-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.87rem; color: var(--tx); line-height: 1.5; }
+  .info-list li::before { content: '—'; color: var(--gd); flex-shrink: 0; margin-top: 1px; }
+
+  .concept { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .concept-left { padding: 3.5rem; border-right: var(--border); }
+  .concept-right { padding: 3.5rem; background: var(--gp); }
+  .persona-card { background: var(--cr); border: var(--border); border-top: 3px solid var(--zg-red); padding: 1.75rem; }
+  .persona-name { font-family: 'DM Serif Display',serif; font-size: 1.2rem; color: var(--zg-red); margin-bottom: 0.25rem; }
+  .persona-age { font-size: 0.72rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .persona-row { display: flex; gap: 0.75rem; margin-bottom: 0.6rem; font-size: 0.84rem; color: var(--tx); }
+  .persona-row::before { content: '→'; color: var(--gd); flex-shrink: 0; }
+  .stat-highlight { background: var(--cr); border: var(--border); border-left: 3px solid var(--zg-red); padding: 0.9rem 1.1rem; margin-bottom: 0.6rem; font-size: 0.83rem; color: var(--tx); line-height: 1.6; }
+  .stat-highlight strong { color: var(--zg-red); }
+
+  .episodes-grid { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; border-bottom: var(--border); }
+  .ep-cell { background: var(--cr); padding: 2.25rem; }
+  .ep-num { font-family: 'DM Serif Display',serif; font-size: 2.5rem; color: var(--gp); line-height: 1; margin-bottom: 0.75rem; opacity: 0.5; }
+  .ep-format { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--zg-red); margin-bottom: 0.5rem; }
+  .ep-title { font-family: 'DM Serif Display',serif; font-size: 1.1rem; color: var(--tx); margin-bottom: 0.75rem; line-height: 1.3; }
+  .ep-body { font-size: 0.82rem; color: var(--mu); line-height: 1.7; margin-bottom: 1rem; }
+  .ep-duration { display: inline-block; font-size: 0.65rem; padding: 3px 10px; background: var(--zg-cream); color: var(--zg-red); border-radius: 100px; letter-spacing: 0.04em; }
+
+  .insta-strategy { border-bottom: var(--border); background: var(--br); }
+  .insta-grid { display: grid; grid-template-columns: repeat(4,1fr); background: #3D3A20; gap: 1px; }
+  .insta-cell { background: var(--br); padding: 2rem 1.5rem; }
+  .insta-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+  .insta-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gl); margin-bottom: 0.6rem; }
+  .insta-body { font-size: 0.82rem; color: #8ABAA0; line-height: 1.7; }
+
+  .calendrier { padding: 3.5rem; border-bottom: var(--border); }
+  .cal-week { margin-bottom: 1.5rem; }
+  .cal-week-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gd); margin-bottom: 0.75rem; font-weight: 500; }
+  .cal-row { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 0.6rem 0; border-bottom: var(--border); font-size: 0.83rem; align-items: baseline; }
+  .cal-row:last-child { border-bottom: none; }
+  .cal-day { color: var(--zg-red); font-weight: 500; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.06em; }
+  .cal-content { color: var(--tx); }
+
+  .actions { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .act-left { padding: 3.5rem; border-right: var(--border); }
+  .act-right { padding: 3.5rem; background: var(--gp); }
+  .action-item { display: flex; gap: 1.25rem; padding: 1.1rem 0; border-bottom: var(--border); }
+  .action-item:last-child { border-bottom: none; }
+  .action-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--zg-red); flex-shrink: 0; margin-top: 6px; }
+  .action-content h4 { font-size: 0.9rem; font-weight: 500; color: var(--tx); margin-bottom: 4px; }
+  .action-content p { font-size: 0.83rem; color: var(--mu); line-height: 1.7; }
+  .visual-quote { background: var(--zg-cream); border-left: 3px solid var(--zg-red); padding: 1.25rem 1.5rem; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1rem; color: var(--zg-red); line-height: 1.6; margin-bottom: 1.25rem; }
+
+  .bilan { display: grid; grid-template-columns: 2fr 1fr; border-bottom: var(--border); }
+  .bilan-left { padding: 3.5rem; border-right: var(--border); }
+  .bilan-right { padding: 3.5rem; background: var(--gp); }
+  .bilan-quote { font-family: 'DM Serif Display',serif; font-style: italic; font-size: 1.2rem; color: var(--gd); line-height: 1.6; border-left: 3px solid var(--gd); padding-left: 1.5rem; margin-top: 1.5rem; }
+  .competence-tag { display: inline-block; font-size: 0.65rem; padding: 4px 10px; background: var(--gp); border: 1px solid var(--bo); color: var(--gd); margin: 3px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .disclaimer { font-size: 0.78rem; color: var(--mu); background: var(--gp); border: var(--border); padding: 0.9rem 1.1rem; margin-top: 1.5rem; line-height: 1.6; }
+
+  .project-footer { background: var(--br); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #3D3A20; }
+  .pf-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--gl); text-decoration: none; letter-spacing: 0.06em; opacity: 0.7; transition: opacity 0.2s; }
+  .pf-back:hover { opacity: 1; }
+  .pf-copy { font-size: 0.65rem; color: #4A5A48; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  @media (max-width: 900px) {
+    .project-hero, .concept, .actions, .bilan { grid-template-columns: 1fr; }
+    .ph-left, .concept-left, .act-left, .bilan-left { border-right: none; border-bottom: var(--border); }
+    .episodes-grid, .insta-grid { grid-template-columns: 1fr; }
+    nav, .section-header { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .ph-left, .concept-left, .concept-right, .act-left, .act-right, .bilan-left, .bilan-right, .ep-cell, .insta-cell, .calendrier { padding: 2rem 1.5rem; }
+    .cal-row { grid-template-columns: 70px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Retour au portfolio</a>
+  <a href="index.html" class="nav-logo">DAYI</a>
+  <span class="nav-num">03 / 04</span>
+</nav>
+
+<section class="project-hero">
+  <div class="ph-left">
+    <p class="ph-eyebrow">Projet école · Équipe de 4 · 2024–2025</p>
+    <div class="ph-logo-badge">ZONE<br>GRISE</div>
+    <h1 class="ph-title">Podcast & stratégie<br><em>de lancement Instagram</em></h1>
+    <div class="ph-meta">
+      <span class="ph-tag">Ligne éditoriale</span>
+      <span class="ph-tag">Personas auditeurs</span>
+      <span class="ph-tag">Stratégie Instagram</span>
+      <span class="ph-tag">Calendrier éditorial</span>
+      <span class="ph-tag">Écriture</span>
+    </div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-quote-block">
+      <p class="ph-quote">"Le podcast où rien n'est totalement noir… ni totalement blanc."</p>
+    </div>
+    <div class="ph-stats">
+      <div class="ph-stat"><div class="ph-stat-val">3</div><div class="ph-stat-lab">Épisodes</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">4</div><div class="ph-stat-lab">Formats contenu</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">16</div><div class="ph-stat-lab">Posts / mois</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Contexte & concept</span>
+  <span class="section-num">C1.2 · C1.3</span>
+</div>
+<section class="concept">
+  <div class="concept-left">
+    <h2 class="block-title">Une zone grise<br><em>entre héritage et choix.</em></h2>
+    <p class="body-text">
+      Zone Grise est un podcast conçu en projet d'école avec une équipe de 4, autour
+      d'un thème de société : la définition contemporaine de la famille. L'axe éditorial
+      interroge si les liens du sang sont nécessairement plus forts que les liens choisis.
+    </p>
+    <p class="body-text">
+      J'ai contribué à l'ensemble du projet — recherche thématique, écriture des scripts,
+      construction des personas, et conception de la stratégie de lancement Instagram —
+      à l'exception du montage audio.
+    </p>
+    <p class="body-text">
+      Ce projet reste théorique : il n'a pas été enregistré ni diffusé, mais il a été
+      construit avec la même rigueur qu'un lancement réel, jusqu'au calendrier éditorial
+      détaillé sur 4 semaines.
+    </p>
+    <ul class="info-list">
+      <li>Format talk-show + enquête/témoignage + conseils pratiques</li>
+      <li>Identité visuelle : beige, rouge, crème — nappe sonore douce</li>
+      <li>3 épisodes scénarisés intégralement (script complet rédigé)</li>
+    </ul>
+  </div>
+  <div class="concept-right">
+    <h2 class="block-title">Persona <em>cible</em></h2>
+    <div class="persona-card">
+      <div class="persona-name">Léa</div>
+      <div class="persona-age">36 ans · Urbaine · Foyer avec enfant</div>
+      <div class="persona-row">Moyenne d'âge des auditeurs de podcast identifiée</div>
+      <div class="persona-row">Hyperconnectée — utilise 4,5 réseaux sociaux en moyenne (Instagram, TikTok)</div>
+      <div class="persona-row">Sur-consommatrice de médias : abonnée Spotify (85%), grande lectrice (69%)</div>
+      <div class="persona-row">55% des auditeurs ciblés sont dans une situation familiale similaire</div>
+    </div>
+    <div class="stat-highlight"><strong>42%</strong> des auditeurs découvrent les podcasts via les réseaux sociaux — dont 19% via Instagram spécifiquement.</div>
+    <div class="stat-highlight">Persona secondaire : <strong>Inès</strong>, 21 ans, étudiante en droit, en questionnement personnel sur la définition du lien familial.</div>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Structure éditoriale — 3 épisodes</span>
+  <span class="section-num">C1.4.2</span>
+</div>
+<section class="episodes-grid">
+  <div class="ep-cell">
+    <div class="ep-num">01</div>
+    <div class="ep-format">Talk-show</div>
+    <h3 class="ep-title">Famille : héritage ou choix ?</h3>
+    <p class="ep-body">Trois invités aux visions opposées (traditionnelle, moderne, nuancée) débattent autour d'un scénario de test ADN révélant l'absence de lien biologique.</p>
+    <span class="ep-duration">≈ 23 min</span>
+  </div>
+  <div class="ep-cell">
+    <div class="ep-num">02</div>
+    <div class="ep-format">Enquête & témoignage</div>
+    <h3 class="ep-title">Quand la vérité change tout</h3>
+    <p class="ep-body">Témoignage reconstitué d'une personne découvrant via un test ADN l'absence de lien génétique avec son père. Analyse psychologique et données INSEE sur l'adoption.</p>
+    <span class="ep-duration">≈ 22 min</span>
+  </div>
+  <div class="ep-cell">
+    <div class="ep-num">03</div>
+    <div class="ep-format">Conseils pratiques</div>
+    <h3 class="ep-title">Comment se créer sa propre famille ?</h3>
+    <p class="ep-body">Guide pratique en 3 conseils : reconnaître les liens déjà présents, cultiver la régularité, accepter que la famille choisie évolue.</p>
+    <span class="ep-duration">≈ 19 min</span>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Stratégie de lancement Instagram</span>
+  <span class="section-num">C1.4.2</span>
+</div>
+<section class="insta-strategy">
+  <div class="insta-grid">
+    <div class="insta-cell">
+      <div class="insta-icon">🎯</div>
+      <div class="insta-title">Cible alignée</div>
+      <div class="insta-body">Le persona Léa utilise Instagram comme réseau social principal — canal naturellement prioritaire pour atteindre la cible définie.</div>
+    </div>
+    <div class="insta-cell">
+      <div class="insta-icon">📲</div>
+      <div class="insta-title">Canal de découverte</div>
+      <div class="insta-body">42% des auditeurs de podcast découvrent de nouveaux contenus via les réseaux sociaux, dont 19% spécifiquement via Instagram.</div>
+    </div>
+    <div class="insta-cell">
+      <div class="insta-icon">🎨</div>
+      <div class="insta-title">Format visuel fort</div>
+      <div class="insta-body">La charte beige/rouge/crème de Zone Grise se prête naturellement à un feed Instagram cohérent et identifiable.</div>
+    </div>
+    <div class="insta-cell">
+      <div class="insta-icon">🔗</div>
+      <div class="insta-title">Lien direct Spotify</div>
+      <div class="insta-body">Bio et stories permettent une redirection en un clic vers les épisodes, réduisant la friction d'écoute.</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Calendrier éditorial — 4 semaines</span>
+  <span class="section-num">C1.4.2</span>
+</div>
+<section class="calendrier">
+  <h2 class="block-title">4 formats, <em>3 à 4 posts par semaine.</em></h2>
+  <p class="body-text" style="max-width:700px">
+    J'ai construit un calendrier détaillé combinant 4 formats de contenu (annonce épisode,
+    citation/extrait, stat/infographie, reel/teaser) répartis sur 4 semaines pour accompagner
+    la sortie des 3 épisodes puis engager la communauté en phase de récap.
+  </p>
+
+  <div class="cal-week">
+    <div class="cal-week-title">Semaine 1 — Lancement & Épisode 1</div>
+    <div class="cal-row"><span class="cal-day">Lundi</span><span class="cal-content">Story "Zone Grise arrive bientôt"</span></div>
+    <div class="cal-row"><span class="cal-day">Mardi</span><span class="cal-content">Post question : "C'est quoi la famille pour vous ?"</span></div>
+    <div class="cal-row"><span class="cal-day">Mercredi</span><span class="cal-content">Reel teaser Ep.1 (30 sec extrait)</span></div>
+    <div class="cal-row"><span class="cal-day">Vendredi</span><span class="cal-content">Sortie Ep.1 — Post cover + lien Spotify en bio</span></div>
+    <div class="cal-row"><span class="cal-day">Samedi</span><span class="cal-content">Citation : "Le sang ne garantit rien. La présence, si."</span></div>
+    <div class="cal-row"><span class="cal-day">Dimanche</span><span class="cal-content">Infographie : 10 000 adoptions/an en France</span></div>
+  </div>
+
+  <div class="cal-week">
+    <div class="cal-week-title">Semaine 2 — Épisode 2</div>
+    <div class="cal-row"><span class="cal-day">Lundi</span><span class="cal-content">Story teaser : "Une révélation qui change tout..."</span></div>
+    <div class="cal-row"><span class="cal-day">Mercredi</span><span class="cal-content">Sortie Ep.2 — Post cover + caption sur les tests ADN</span></div>
+    <div class="cal-row"><span class="cal-day">Vendredi</span><span class="cal-content">Citation : "Ce qui fait mal, c'est souvent le silence."</span></div>
+    <div class="cal-row"><span class="cal-day">Dimanche</span><span class="cal-content">Stat : "10 000 à 12 000 enfants adoptés/an (INSEE)"</span></div>
+  </div>
+
+  <div class="cal-week">
+    <div class="cal-week-title">Semaine 3 — Épisode 3</div>
+    <div class="cal-row"><span class="cal-day">Lundi</span><span class="cal-content">Story teaser : "Et si tu pouvais choisir ta famille ?"</span></div>
+    <div class="cal-row"><span class="cal-day">Mercredi</span><span class="cal-content">Sortie Ep.3 — Post cover + caption pratique</span></div>
+    <div class="cal-row"><span class="cal-day">Vendredi</span><span class="cal-content">Question engageante : "C'est qui, ta vraie famille ?"</span></div>
+    <div class="cal-row"><span class="cal-day">Dimanche</span><span class="cal-content">Tuto stories : "3 signes que quelqu'un est ta famille de cœur"</span></div>
+  </div>
+
+  <div class="cal-week">
+    <div class="cal-week-title">Semaine 4 — Récap & engagement communauté</div>
+    <div class="cal-row"><span class="cal-day">Lundi</span><span class="cal-content">Carrousel récap "Les 3 épisodes du mois"</span></div>
+    <div class="cal-row"><span class="cal-day">Mercredi</span><span class="cal-content">Sondage stories : "Famille de sang ou de cœur ?"</span></div>
+    <div class="cal-row"><span class="cal-day">Vendredi</span><span class="cal-content">Post communauté — partage de réponses d'abonnés (DM anonymes)</span></div>
+    <div class="cal-row"><span class="cal-day">Dimanche</span><span class="cal-content">Teaser saison 2 / prochain thème</span></div>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Actions réalisées</span>
+  <span class="section-num">C1.3 · C1.4</span>
+</div>
+<section class="actions">
+  <div class="act-left">
+    <h2 class="block-title">Ma <em>contribution.</em></h2>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Recherche thématique</h4>
+        <p>Recherche documentaire sur l'évolution des modèles familiaux en France (recomposée, choisie, adoptive), appuyée par des données INSEE et Ifop, et sur les fondements psychologiques (théorie de l'attachement de Bowlby, identité narrative de Ricoeur).</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Écriture des scripts</h4>
+        <p>Participation à la rédaction complète des dialogues des 3 épisodes : structuration du débat de l'épisode 1, écriture du témoignage reconstitué de l'épisode 2, conseils pratiques de l'épisode 3.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Construction des personas</h4>
+        <p>Définition des deux personas auditeurs (Léa et Inès) à partir de données démographiques et d'usages médias, pour orienter le ton et les choix de diffusion.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Stratégie & calendrier Instagram</h4>
+        <p>Conception de la stratégie de lancement Instagram (justification du canal, formats de contenu) et construction du calendrier éditorial détaillé jour par jour sur 4 semaines.</p>
+      </div>
+    </div>
+  </div>
+  <div class="act-right">
+    <h2 class="block-title">Identité <em>du podcast</em></h2>
+    <div class="visual-quote">
+      "Ici, on explore les zones floues, les dilemmes, les questions qui divisent."
+    </div>
+    <p class="body-text">
+      L'identité visuelle de Zone Grise — palette beige, rouge, crème, nappe sonore douce
+      en piano/guitare acoustique pour les moments de témoignage — a été pensée pour créer
+      une bulle d'intimité cohérente entre le son et le visuel Instagram.
+    </p>
+    <p class="body-text">
+      Chaque épisode suit un chemin de fer précis avec un minutage détaillé par partie
+      (bienvenue, lancement du débat, tension centrale, réflexion finale, outro), garantissant
+      un rythme maîtrisé malgré la profondeur du sujet traité.
+    </p>
+  </div>
+</section>
+
+<div class="section-header">
+  <span class="section-label">Compétences mobilisées & bilan</span>
+</div>
+<section class="bilan">
+  <div class="bilan-left">
+    <h2 class="block-title">Ce que ce projet<br><em>m'a appris.</em></h2>
+    <p class="body-text">
+      Zone Grise m'a permis de travailler la cohérence entre un fond éditorial sensible
+      et une stratégie de diffusion concrète. Construire un persona auditeur à partir de
+      données réelles d'usage média, puis en déduire une stratégie de canal justifiée,
+      est un exercice que j'ai pu réutiliser dans mes autres projets marketing.
+    </p>
+    <p class="body-text">
+      Ce projet m'a aussi appris à structurer un calendrier éditorial complet — pas seulement
+      "quoi publier" mais "pourquoi, quand, et pour qui" — une compétence transférable à
+      n'importe quelle marque ou produit.
+    </p>
+    <div class="bilan-quote">
+      "J'ai construit la stratégie de lancement Instagram et le calendrier éditorial
+      complet, en partant d'un persona auditeur documenté plutôt que d'une intuition."
+    </div>
+    <div class="disclaimer">
+      <strong>Note :</strong> ce projet est un exercice pédagogique théorique — le podcast
+      n'a pas été enregistré ni diffusé publiquement. Il a néanmoins été construit avec
+      le même niveau de rigueur stratégique qu'un lancement réel.
+    </div>
+  </div>
+  <div class="bilan-right">
+    <h2 class="block-title" style="font-size:1.1rem;margin-bottom:1.25rem">Compétences du référentiel</h2>
+    <span class="competence-tag">C1.2 — Étude de cible</span>
+    <span class="competence-tag">C1.3 — Stratégie de contenu</span>
+    <span class="competence-tag">C1.4.2 — Ligne éditoriale</span>
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--border)">
+      <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--mu);margin-bottom:0.75rem">Outils & méthodes</p>
+      <span class="competence-tag">Personas</span>
+      <span class="competence-tag">Calendrier éditorial</span>
+      <span class="competence-tag">Charte visuelle</span>
+      <span class="competence-tag">Écriture de script</span>
+    </div>
+  </div>
+</section>
+
+<div class="project-footer">
+  <a href="index.html" class="pf-back">← Retour au portfolio</a>
+  <span class="pf-copy">© 2026 Zhou Clessy</span>
+</div>
+
+</body>
+</html>

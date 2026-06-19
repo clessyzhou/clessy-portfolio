@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhou Clessy — Portfolio Marketing Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gd: #027545; --br: #282706; --gl: #60D8A7;
+    --gp: #E8F5EF; --cr: #FAFAF7; --tx: #1A1A14;
+    --mu: #5A6B5E; --bo: #C8DDD2; --border: 1px solid #C8DDD2;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans','Helvetica Neue',sans-serif; background: var(--cr); color: var(--tx); -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--cr); border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 56px; }
+  .nav-logo-main { font-family: 'DM Serif Display',serif; font-size: 1.4rem; letter-spacing: 0.12em; color: var(--gd); text-decoration: none; }
+  .nav-logo-sub { font-size: 0.52rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gd); opacity: 0.65; margin-top: 1px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.75rem; color: var(--mu); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gd); }
+
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 56px); border-bottom: var(--border); }
+  .hero-left { background: var(--gd); padding: 5rem 3.5rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: var(--border); }
+  .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gl); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gl); }
+  .hero-title { font-family: 'DM Serif Display',serif; font-size: clamp(2.8rem,5vw,4.2rem); font-weight: 400; line-height: 1.05; color: #fff; letter-spacing: -0.01em; margin-bottom: 2rem; }
+  .hero-title em { font-style: italic; color: var(--gl); }
+  .hero-desc { font-size: 0.93rem; color: #A8C8B8; line-height: 1.85; max-width: 400px; margin-bottom: 2.5rem; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; background: #F2A8B8; color: var(--br); padding: 0.9rem 2rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; text-decoration: none; width: fit-content; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.88; }
+  .hero-right { background: var(--br); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-top: 3rem; overflow: hidden; position: relative; }
+  .hero-photo { width: 160px; height: 210px; object-fit: cover; object-position: top center; display: block; }
+  .hero-stats { position: absolute; top: 2rem; right: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .stat-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(96,216,167,0.2); padding: 8px 12px; text-align: right; }
+  .stat-chip strong { display: block; font-family: 'DM Serif Display',serif; font-size: 1.4rem; color: var(--gl); line-height: 1; }
+  .stat-chip span { font-size: 0.6rem; color: #6A9A7A; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 2.5rem; border-bottom: var(--border); }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); }
+  .section-count { font-size: 0.65rem; color: var(--bo); }
+
+  .about { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .about-left { background: var(--gp); padding: 4rem 3.5rem; border-right: var(--border); }
+  .about-left h2 { font-family: 'DM Serif Display',serif; font-size: 2.2rem; font-weight: 400; line-height: 1.15; color: var(--tx); margin-bottom: 1.5rem; }
+  .about-left h2 em { font-style: italic; color: var(--gd); }
+  .about-left p { font-size: 0.9rem; color: var(--mu); line-height: 1.85; margin-bottom: 1rem; }
+  .about-left blockquote { border-left: 3px solid var(--gd); padding-left: 1.25rem; font-family: 'DM Serif Display',serif; font-style: italic; font-size: 1rem; color: var(--gd); line-height: 1.7; margin-top: 1.5rem; }
+  .about-right { background: var(--cr); padding: 4rem 3.5rem; }
+  .tools-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); margin-bottom: 1.25rem; }
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .tool-item { font-size: 0.82rem; padding: 9px 12px; border: var(--border); color: var(--tx); background: var(--gp); }
+
+  .projects { border-bottom: var(--border); }
+  .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; }
+  .project-card { background: var(--cr); display: flex; flex-direction: column; transition: background 0.15s; cursor: pointer; }
+  .project-card:hover { background: var(--gp); }
+  .project-card.wide { grid-column: span 3; display: grid; grid-template-columns: 1.1fr 1fr; background: var(--br); }
+  .project-card.wide:hover { background: #323010; }
+  .project-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; border-bottom: var(--border); }
+  .project-img-placeholder { width: 100%; aspect-ratio: 4/3; background: var(--gp); border-bottom: var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--bo); text-transform: uppercase; letter-spacing: 0.15em; }
+  .project-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .project-body.wide-body { padding: 3rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .project-num { font-size: 0.62rem; letter-spacing: 0.15em; color: var(--bo); text-transform: uppercase; margin-bottom: 8px; }
+  .wide .project-num { color: rgba(96,216,167,0.4); }
+  .project-title { font-family: 'DM Serif Display',serif; font-size: 1.2rem; font-weight: 400; line-height: 1.25; color: var(--tx); margin-bottom: 6px; }
+  .wide .project-title { color: #fff; font-size: 1.8rem; margin-bottom: 1rem; }
+  .project-sub { font-size: 0.83rem; color: var(--mu); line-height: 1.7; margin-bottom: 1.1rem; flex: 1; }
+  .wide .project-sub { color: #8ABAA0; }
+  .project-trailer { color: var(--gl); text-decoration: underline; font-size: 0.75rem; display: block; margin-top: 6px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 1.1rem; }
+  .tag { font-size: 0.62rem; padding: 3px 9px; border: 1px solid var(--bo); color: var(--mu); letter-spacing: 0.04em; text-transform: uppercase; }
+  .wide .tag { background: rgba(96,216,167,0.08); color: var(--gl); border-color: rgba(96,216,167,0.18); }
+  .project-metrics { display: flex; gap: 1.25rem; flex-wrap: wrap; padding-top: 1rem; border-top: var(--border); }
+  .wide .project-metrics { border-top-color: rgba(255,255,255,0.08); }
+  .metric-val { font-family: 'DM Serif Display',serif; font-size: 1.3rem; color: var(--tx); display: block; line-height: 1; }
+  .wide .metric-val { color: var(--gl); }
+  .metric-lab { font-size: 0.6rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 3px; }
+  .wide .metric-lab { color: #5A7A68; }
+  .wide-visuals { background: var(--br); padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; justify-content: center; border-left: 1px solid rgba(255,255,255,0.05); }
+  .visual-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(96,216,167,0.45); margin-bottom: 6px; }
+  .visual-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .visual-img { width: 100%; object-fit: cover; display: block; border: 1px solid rgba(255,255,255,0.07); max-height: 200px; }
+  .visual-img.full { max-height: 110px; }
+
+  .skills-bar { display: grid; grid-template-columns: repeat(7,1fr); background: var(--bo); gap: 1px; border-bottom: var(--border); }
+  .skill-cell { background: var(--cr); padding: 1.25rem 0.6rem; text-align: center; }
+  .skill-icon { font-size: 1.2rem; margin-bottom: 6px; display: block; }
+  .skill-name { font-size: 0.6rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.08em; display: block; }
+  .skill-detail { font-size: 0.58rem; color: var(--bo); margin-top: 2px; }
+
+  .univers { background: var(--br); padding: 5rem 0; border-bottom: var(--border); }
+  .univers-inner { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+  .univers h2 { font-family: 'DM Serif Display',serif; font-size: 2rem; color: var(--gl); margin-bottom: 0.75rem; }
+  .univers > .univers-inner > p { font-size: 0.88rem; color: #7A8A60; line-height: 1.8; margin-bottom: 2.5rem; }
+  .univers-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .univers-card { background: #323010; padding: 1.75rem; border-left: 3px solid var(--gd); }
+  .univers-card h3 { font-family: 'DM Serif Display',serif; font-size: 1rem; color: var(--gl); margin-bottom: 0.5rem; }
+  .univers-card p { font-size: 0.83rem; color: #8A9A70; line-height: 1.75; }
+
+  .contact { display: grid; grid-template-columns: 1fr 1fr; }
+  .contact-left { background: var(--gd); padding: 4rem 3.5rem; border-right: var(--border); }
+  .contact-left h2 { font-family: 'DM Serif Display',serif; font-size: 2.8rem; font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: 0.75rem; }
+  .contact-left h2 em { font-style: italic; color: var(--gl); }
+  .contact-left p { font-size: 0.9rem; color: #8ABAA0; line-height: 1.8; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-link { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(96,216,167,0.2); text-decoration: none; color: #fff; font-size: 0.85rem; transition: background 0.2s; }
+  .contact-link:hover { background: rgba(96,216,167,0.1); }
+  .contact-link-icon { color: var(--gl); flex-shrink: 0; font-style: normal; }
+  .contact-right { background: var(--br); padding: 4rem 3.5rem; }
+  .contact-right h3 { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gl); opacity: 0.6; margin-bottom: 1.25rem; }
+  .avail-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 0.75rem; padding: 7px 14px; background: rgba(96,216,167,0.1); color: var(--gl); margin-bottom: 2rem; letter-spacing: 0.06em; }
+  .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gl); display: block; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .interests { display: flex; flex-direction: column; gap: 8px; }
+  .interest-item { font-size: 0.82rem; color: #8A9A70; padding: 9px 12px; background: #323010; border-left: 2px solid var(--gd); }
+
+  footer { background: var(--br); padding: 1.5rem 2.5rem; border-top: 1px solid #3D3A20; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'DM Serif Display',serif; font-size: 1.2rem; letter-spacing: 0.14em; color: var(--gl); opacity: 0.4; }
+  .footer-sub { font-size: 0.5rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gl); opacity: 0.25; margin-top: 1px; }
+  .footer-copy { font-size: 0.68rem; color: #4A5A48; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .eyebrow-sm { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gl); opacity: 0.7; margin-bottom: 0.75rem; }
+
+  @media (max-width: 900px) {
+    .project-card.wide { grid-template-columns: 1fr; }
+    .wide-visuals { border-left: none; border-top: 1px solid rgba(255,255,255,0.05); }
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .project-card.wide { grid-column: span 2; }
+    .skills-bar { grid-template-columns: repeat(4,1fr); }
+    .univers-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 3rem 1.5rem 2rem; justify-content: flex-start; }
+    .hero-right { min-height: 260px; padding-top: 2rem; }
+    .hero-photo { width: 160px; height: 210px; }
+    .hero-stats { top: 1rem; right: 1rem; }
+    .about { grid-template-columns: 1fr; }
+    .about-left { padding: 2.5rem 1.5rem; border-right: none; }
+    .about-right { padding: 2.5rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; background: none; gap: 0; }
+    .project-card { border-bottom: var(--border); }
+    .project-card.wide { grid-column: span 1; grid-template-columns: 1fr; }
+    .skills-bar { grid-template-columns: repeat(4,1fr); }
+    .contact { grid-template-columns: 1fr; }
+    .contact-left { padding: 2.5rem 1.5rem; border-right: none; }
+    .contact-right { padding: 2.5rem 1.5rem; }
+    .univers-grid { grid-template-columns: 1fr; }
+    .section-header { padding: 1rem 1.5rem; }
+    footer { padding: 1.25rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" style="text-decoration:none">
+    <div class="nav-logo-main">DAYI</div>
+    <div class="nav-logo-sub">Marketing Digital</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Portfolio 2026</p>
+    <h1 class="hero-title">Créer du contenu<br><em>qui engage.</em></h1>
+    <p class="hero-desc">Community management, chargée e-commerce, bilingue français–chinois. Spécialisée en stratégie social media, campagnes Meta Ads et marketing de contenu. Basée à Paris.</p>
+    <a class="btn-primary" href="#projets">Voir mes projets →</a>
+  </div>
+  <div class="hero-right">
+    <img src="photo_jpg.jpeg" alt="Zhou Clessy" class="hero-photo" />
+    <div class="hero-stats">
+      <div class="stat-chip"><strong>2+</strong><span>ans d'expérience</span></div>
+      <div class="stat-chip"><strong>FR/ZH</strong><span>bilingue</span></div>
+      <div class="stat-chip"><strong>Paris</strong><span>Bachelor MDS</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-header" id="about">
+  <span class="section-label">À propos</span>
+</div>
+<section class="about">
+  <div class="about-left">
+    <h2>Une approche marketing<br><em>ancrée dans le terrain.</em></h2>
+    <p>Étudiante en Bachelor Marketing Digital à MyDigitalSchool Paris, j'ai construit une double expertise en community management et e-commerce au fil de mes expériences professionnelles et de projets étudiants ambitieux.</p>
+    <p>Mon alternance chez Tentation m'a permis de piloter de A à Z la présence digitale d'une marque de prêt-à-porter : création de contenu, campagnes payantes, gestion complète d'une boutique Shopify, SAV et suivi des KPI.</p>
+    <p>Mon profil bilingue français–chinois me permet d'approcher des marchés souvent inexploités et d'apporter une lecture interculturelle aux stratégies de contenu.</p>
+    <blockquote>"Ma sensibilité produit me permet de contribuer activement au développement et à la mise en valeur d'une gamme."</blockquote>
+  </div>
+  <div class="about-right">
+    <p class="tools-label">Outils maîtrisés</p>
+    <div class="tools-grid">
+      <div class="tool-item">Meta Ads</div>
+      <div class="tool-item">Canva / Figma</div>
+      <div class="tool-item">Shopify</div>
+      <div class="tool-item">WordPress</div>
+      <div class="tool-item">Google Analytics</div>
+      <div class="tool-item">Looker Studio</div>
+      <div class="tool-item">SEO / Semrush</div>
+      <div class="tool-item">Klaviyo</div>
+      <div class="tool-item">Hotjar</div>
+      <div class="tool-item">Notion</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-header" id="projets">
+  <span class="section-label">Projets & réalisations</span>
+  <span class="section-count">4 projets</span>
+</div>
+<section class="projects">
+  <div class="projects-grid">
+
+    <div class="project-card wide" onclick="window.location='tentation.html'" style="cursor:pointer">
+      <div class="project-body wide-body">
+        <p class="project-num">01 — Alternance · Tentation, Beauvais · 2024–2026</p>
+        <h3 class="project-title">Stratégie social media & e-commerce</h3>
+        <p class="project-sub">Gestion complète de la présence digitale d'une marque de prêt-à-porter féminin : réseaux sociaux, création de contenus visuels, campagnes Meta Ads, boutique Shopify, SAV, logistique et suivi KPI.</p>
+        <div class="project-tags">
+          <span class="tag">Community management</span>
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Shopify</span>
+          <span class="tag">Google Analytics</span>
+          <span class="tag">Reels / TikTok</span>
+          <span class="tag">Hotjar</span>
+        </div>
+        <div class="project-metrics">
+          <div><span class="metric-val">1 303</span><span class="metric-lab">Followers IG</span></div>
+          <div><span class="metric-val">24,6K</span><span class="metric-lab">Vues / 30j</span></div>
+          <div><span class="metric-val">1 312</span><span class="metric-lab">Followers TikTok</span></div>
+          <div><span class="metric-val">360°</span><span class="metric-lab">Présence digitale</span></div>
+        </div>
+      </div>
+      <div class="wide-visuals">
+        <div class="visual-label">Instagram & TikTok — Tentation Beauvais</div>
+        <div class="visual-row">
+          <img class="visual-img" src="IMG_2706.jpeg" alt="Instagram Tentation" onerror="this.style.display='none'">
+          <img class="visual-img" src="IMG_2709.jpeg" alt="TikTok Tentation" onerror="this.style.display='none'">
+        </div>
+        <div class="visual-label" style="margin-top:0.5rem">Boutique Shopify</div>
+        <img class="visual-img full" src="shopify_tentation.png" alt="Shopify Tentation" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="project-card" onclick="window.location='hapto.html'" style="cursor:pointer">
+      <div class="project-img-placeholder">HAPTŌ</div>
+      <div class="project-body">
+        <p class="project-num">02 — Projet école · 2025–2026</p>
+        <h3 class="project-title">HAPTŌ — Création de startup de A à Z</h3>
+        <p class="project-sub">Équipe VEGA — Planche d'éveil sensorielle modulaire éco-conçue. Responsable marketing : étude de marché (80 répondants), 4 personas, stratégie 5P, charte éditoriale et budget prévisionnel.</p>
+        <div class="project-tags">
+          <span class="tag">Étude de marché</span>
+          <span class="tag">Stratégie mktg</span>
+          <span class="tag">Charte éditoriale</span>
+          <span class="tag">Personas</span>
+        </div>
+        <div class="project-metrics">
+          <div><span class="metric-val">80</span><span class="metric-lab">Répondants</span></div>
+          <div><span class="metric-val">4</span><span class="metric-lab">Personas</span></div>
+          <div><span class="metric-val">15K€</span><span class="metric-lab">Budget mktg</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="window.location='zonegrise.html'" style="cursor:pointer">
+      <div class="project-img-placeholder">Zone Grise</div>
+      <div class="project-body">
+        <p class="project-num">03 — Projet école · 2024–2025</p>
+        <h3 class="project-title">Zone Grise — Podcast & lancement Instagram</h3>
+        <p class="project-sub">Podcast sur la famille contemporaine — ligne éditoriale, personas auditeurs, stratégie Instagram et calendrier éditorial sur 4 semaines. 3 épisodes, 4 formats de contenu, 16 posts par mois.</p>
+        <div class="project-tags">
+          <span class="tag">Ligne éditoriale</span>
+          <span class="tag">Stratégie Instagram</span>
+          <span class="tag">Personas</span>
+          <span class="tag">Planning éditorial</span>
+        </div>
+        <div class="project-metrics">
+          <div><span class="metric-val">3</span><span class="metric-lab">Épisodes</span></div>
+          <div><span class="metric-val">4</span><span class="metric-lab">Formats</span></div>
+          <div><span class="metric-val">16</span><span class="metric-lab">Posts / mois</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" onclick="window.location='sencybility.html'" style="cursor:pointer">
+      <div class="project-img-placeholder">SenCybility</div>
+      <div class="project-body">
+        <p class="project-num">04 — Projet école · Anglais · 2024</p>
+        <h3 class="project-title">SenCybility — Jeu de cartes cybersécurité</h3>
+        <p class="project-sub">Équipe de 5 — Serious game pédagogique sur la cybersécurité. Conception des règles, des cartes, playtests et add-on digital.</p>
+        <div class="project-tags">
+          <span class="tag">Game design</span>
+          <span class="tag">Règles du jeu</span>
+          <span class="tag">Playtest</span>
+          <span class="tag">English</span>
+        </div>
+        <div class="project-metrics">
+          <div><span class="metric-val">24+</span><span class="metric-lab">Cartes</span></div>
+          <div><span class="metric-val">4</span><span class="metric-lab">Zones</span></div>
+          <div><span class="metric-val">10'</span><span class="metric-lab">Par partie</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-header" id="competences">
+  <span class="section-label">Compétences</span>
+</div>
+<section class="skills-bar">
+  <div class="skill-cell"><span class="skill-icon">📊</span><span class="skill-name">Stratégie</span><span class="skill-detail">Marketing & comm</span></div>
+  <div class="skill-cell"><span class="skill-icon">📱</span><span class="skill-name">Social media</span><span class="skill-detail">IG · TikTok · FB</span></div>
+  <div class="skill-cell"><span class="skill-icon">🛒</span><span class="skill-name">E-commerce</span><span class="skill-detail">Shopify · SAV</span></div>
+  <div class="skill-cell"><span class="skill-icon">📣</span><span class="skill-name">Paid media</span><span class="skill-detail">Meta Ads · Google</span></div>
+  <div class="skill-cell"><span class="skill-icon">✍️</span><span class="skill-name">Contenu</span><span class="skill-detail">Canva · Figma</span></div>
+  <div class="skill-cell"><span class="skill-icon">📈</span><span class="skill-name">Analytics</span><span class="skill-detail">GA · Looker · Hotjar</span></div>
+  <div class="skill-cell"><span class="skill-icon">🌏</span><span class="skill-name">Bilingue</span><span class="skill-detail">FR / 中文</span></div>
+</section>
+
+
+<div class="section-header" id="contact">
+  <span class="section-label">Contact</span>
+</div>
+<section class="contact">
+  <div class="contact-left">
+    <h2>Travaillons<br><em>ensemble.</em></h2>
+    <p>N'hésite pas à me contacter pour échanger sur un projet ou une opportunité.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:clessyzhou.3@gmail.com"><span class="contact-link-icon">✉</span>clessyzhou.3@gmail.com</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/clessy-zhou-4b9590267/" target="_blank" rel="noopener"><span class="contact-link-icon">in</span>LinkedIn — Clessy Zhou</a>
+      <a class="contact-link" href="CV_Zhou_Clessy_Marketing_digital.pdf" download><span class="contact-link-icon">↓</span>Télécharger le CV</a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <h3>Centres d'intérêt</h3>
+    <div class="interests" style="margin-top:0">
+      <div class="interest-item">Sport & Lifestyle — Pilates, musculation, badminton</div>
+      <div class="interest-item">Voyage & Découverte — Marchés internationaux</div>
+      <div class="interest-item">Gaming & Expériences — Escape game, immersif</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div><div class="footer-logo">DAYI</div><div class="footer-sub">Marketing Digital</div></div>
+  <span class="footer-copy">© 2026 Zhou Clessy — Paris</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentation — Stratégie social media & e-commerce · Zhou Clessy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gd: #027545; --br: #282706; --gl: #60D8A7;
+    --gp: #E8F5EF; --cr: #FAFAF7; --tx: #1A1A14;
+    --mu: #5A6B5E; --bo: #C8DDD2; --border: 1px solid #C8DDD2;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans','Helvetica Neue',sans-serif; background: var(--cr); color: var(--tx); -webkit-font-smoothing: antialiased; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--cr); border-bottom: var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2.5rem; height: 56px;
+  }
+  .nav-back {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; color: var(--mu); text-decoration: none;
+    letter-spacing: 0.06em; transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--gd); }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem; letter-spacing: 0.12em; color: var(--gd);
+    text-decoration: none;
+  }
+  .nav-num { font-size: 0.65rem; color: var(--bo); letter-spacing: 0.1em; }
+
+  /* HERO PROJET */
+  .project-hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 60vh; border-bottom: var(--border);
+  }
+  .ph-left {
+    background: var(--gd); padding: 5rem 3.5rem 4rem;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    border-right: var(--border);
+  }
+  .ph-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gl); margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .ph-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gl); }
+  .ph-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 400; line-height: 1.05; color: #fff;
+    letter-spacing: -0.01em; margin-bottom: 1.5rem;
+  }
+  .ph-title em { font-style: italic; color: var(--gl); }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ph-tag {
+    font-size: 0.65rem; padding: 4px 10px;
+    background: rgba(96,216,167,0.12); color: var(--gl);
+    border: 1px solid rgba(96,216,167,0.2);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .ph-right {
+    background: var(--br);
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
+  .ph-imgs {
+    grid-column: span 2; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: #3D3A20;
+  }
+  .ph-img {
+    width: 100%; height: 300px; object-fit: cover;
+    object-position: top; display: block;
+  }
+  .ph-stat {
+    padding: 1.75rem; border-top: 1px solid #3D3A20;
+    border-right: 1px solid #3D3A20;
+  }
+  .ph-stat:last-child { border-right: none; }
+  .ph-stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--gl); line-height: 1;
+  }
+  .ph-stat-lab { font-size: 0.65rem; color: #6A9A7A; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  /* BODY SECTIONS */
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+
+  .section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1.1rem 2.5rem; border-bottom: var(--border);
+  }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); }
+  .section-num { font-size: 0.65rem; color: var(--bo); }
+
+  /* CONTEXTE */
+  .contexte {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: var(--border);
+  }
+  .ctx-left { padding: 3.5rem 3.5rem; border-right: var(--border); }
+  .ctx-right { padding: 3.5rem 3.5rem; background: var(--gp); }
+  .block-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; color: var(--tx); margin-bottom: 1.25rem; line-height: 1.2;
+  }
+  .block-title em { font-style: italic; color: var(--gd); }
+  .body-text { font-size: 0.9rem; color: var(--mu); line-height: 1.85; margin-bottom: 1rem; }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .info-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.87rem; color: var(--tx); line-height: 1.5;
+  }
+  .info-list li::before { content: '—'; color: var(--gd); flex-shrink: 0; margin-top: 1px; }
+  .persona-card {
+    background: var(--cr); border: var(--border); padding: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .persona-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--gd); margin-bottom: 0.5rem;
+  }
+  .persona-detail { font-size: 0.85rem; color: var(--mu); line-height: 1.7; }
+
+  /* DÉMARCHE */
+  .demarche { border-bottom: var(--border); }
+  .demarche-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--bo); gap: 1px;
+  }
+  .demarche-cell { background: var(--cr); padding: 2.5rem; }
+  .demarche-cell.dark { background: var(--br); }
+  .dc-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem; color: var(--gp); line-height: 1;
+    margin-bottom: 1rem; opacity: 0.4;
+  }
+  .demarche-cell.dark .dc-num { color: var(--gl); opacity: 0.2; }
+  .dc-title {
+    font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--gd); margin-bottom: 0.75rem;
+  }
+  .demarche-cell.dark .dc-title { color: var(--gl); }
+  .dc-body { font-size: 0.87rem; color: var(--mu); line-height: 1.8; }
+  .demarche-cell.dark .dc-body { color: #8ABAA0; }
+
+  /* ACTIONS */
+  .actions {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: var(--border);
+  }
+  .act-left { padding: 3.5rem; border-right: var(--border); }
+  .act-right { padding: 3.5rem; background: var(--gp); }
+  .action-item {
+    display: flex; gap: 1.25rem; padding: 1.25rem 0;
+    border-bottom: var(--border);
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gd); flex-shrink: 0; margin-top: 6px;
+  }
+  .action-content h4 { font-size: 0.9rem; font-weight: 500; color: var(--tx); margin-bottom: 4px; }
+  .action-content p { font-size: 0.83rem; color: var(--mu); line-height: 1.7; }
+  .proof-label {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--mu); margin-bottom: 0.75rem; margin-top: 1.5rem;
+  }
+  .proof-label:first-child { margin-top: 0; }
+  .proof-img {
+    width: 100%; display: block; border: var(--border);
+    margin-bottom: 1rem;
+  }
+
+  /* KPI */
+  .kpis-section { border-bottom: var(--border); background: var(--br); }
+  .kpis-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    background: #3D3A20; gap: 1px;
+  }
+  .kpi-cell { background: var(--br); padding: 2rem 1.5rem; }
+  .kpi-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem; color: var(--gl); line-height: 1; margin-bottom: 4px;
+  }
+  .kpi-lab { font-size: 0.6rem; color: #5A7A68; text-transform: uppercase; letter-spacing: 0.1em; }
+  .kpi-delta { font-size: 0.72rem; color: #43a047; margin-top: 4px; }
+
+  /* BILAN */
+  .bilan { display: grid; grid-template-columns: 2fr 1fr; border-bottom: var(--border); }
+  .bilan-left { padding: 3.5rem; border-right: var(--border); }
+  .bilan-right { padding: 3.5rem; background: var(--gp); }
+  .bilan-quote {
+    font-family: 'DM Serif Display', serif; font-style: italic;
+    font-size: 1.3rem; color: var(--gd); line-height: 1.6;
+    border-left: 3px solid var(--gd); padding-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .compétence-tag {
+    display: inline-block; font-size: 0.65rem; padding: 4px 10px;
+    background: var(--gp); border: 1px solid var(--bo);
+    color: var(--gd); margin: 3px; letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  .project-footer {
+    background: var(--br); padding: 2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #3D3A20;
+  }
+  .pf-back {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; color: var(--gl); text-decoration: none;
+    letter-spacing: 0.06em; opacity: 0.7; transition: opacity 0.2s;
+  }
+  .pf-back:hover { opacity: 1; }
+  .pf-copy { font-size: 0.65rem; color: #4A5A48; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  @media (max-width: 900px) {
+    .project-hero { grid-template-columns: 1fr; min-height: auto; }
+    .ph-left { padding: 3rem 1.5rem 2rem; }
+    .ph-right { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+    .ph-imgs { height: 220px; }
+    .ph-img { height: 220px; }
+    .contexte, .actions, .bilan { grid-template-columns: 1fr; }
+    .ctx-left, .act-left, .bilan-left { border-right: none; border-bottom: var(--border); }
+    .demarche-grid { grid-template-columns: 1fr; }
+    .kpis-grid { grid-template-columns: repeat(3, 1fr); }
+    .section-header { padding: 1rem 1.5rem; }
+    nav { padding: 0 1.5rem; }
+    .ctx-left, .ctx-right, .act-left, .act-right, .bilan-left, .bilan-right { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Retour au portfolio</a>
+  <a href="index.html" class="nav-logo">DAYI</a>
+  <span class="nav-num">01 / 04</span>
+</nav>
+
+<!-- HERO -->
+<section class="project-hero">
+  <div class="ph-left">
+    <p class="ph-eyebrow">Alternance · 2024–2026 · Beauvais</p>
+    <h1 class="ph-title">Stratégie social media<br><em>& e-commerce</em></h1>
+    <div class="ph-meta">
+      <span class="ph-tag">Community management</span>
+      <span class="ph-tag">Meta Ads</span>
+      <span class="ph-tag">Google Ads</span>
+      <span class="ph-tag">Shopify</span>
+      <span class="ph-tag">Création de contenu</span>
+      <span class="ph-tag">SAV</span>
+    </div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-imgs">
+      <img class="ph-img" src="IMG_2706.jpeg" alt="Instagram Tentation"
+           onerror="this.parentElement.style.background='#3D3A20'">
+      <img class="ph-img" src="IMG_2709.jpeg" alt="TikTok Tentation"
+           onerror="this.parentElement.style.background='#3D3A20'">
+    </div>
+    <div class="ph-stat"><div class="ph-stat-val">1 303</div><div class="ph-stat-lab">Followers Instagram</div></div>
+    <div class="ph-stat"><div class="ph-stat-val">1 312</div><div class="ph-stat-lab">Followers TikTok</div></div>
+  </div>
+</section>
+
+<!-- CONTEXTE & ENJEUX -->
+<div class="section-header">
+  <span class="section-label">Contexte & enjeux</span>
+  <span class="section-num">C1.1 · C1.2</span>
+</div>
+<section class="contexte">
+  <div class="ctx-left">
+    <h2 class="block-title">Une boutique multi-univers<br><em>à digitaliser.</em></h2>
+    <p class="body-text">
+      Tentation est une boutique de prêt-à-porter implantée à Beauvais, proposant des collections
+      pour femmes, hommes et enfants. Présente physiquement depuis plusieurs années, la marque
+      n'avait pas de présence digitale structurée à mon arrivée.
+    </p>
+    <p class="body-text">
+      J'ai intégré l'entreprise en alternance avec pour mission de construire et piloter
+      l'intégralité de sa présence en ligne : réseaux sociaux, boutique e-commerce et campagnes
+      publicitaires. J'ai créé la boutique Shopify de zéro et y ai catalogué plus de 1 200 références
+      sur la seule collection femme.
+    </p>
+    <ul class="info-list">
+      <li>Boutique physique + e-commerce lancé depuis mon arrivée</li>
+      <li>1 200+ produits catalogués (collection femme)</li>
+      <li>Univers femme, homme, enfant — cible ados et jeunes adultes</li>
+      <li>Gestion en autonomie totale de la présence digitale</li>
+    </ul>
+  </div>
+  <div class="ctx-right">
+    <h2 class="block-title">Clientèle <em>cible</em></h2>
+    <p class="body-text">
+      En m'appuyant sur l'observation du trafic en boutique, des interactions sur les réseaux
+      et des données Shopify, j'ai identifié deux segments principaux à adresser.
+    </p>
+    <div class="persona-card">
+      <div class="persona-name">Segment principal — Jeune adulte</div>
+      <div class="persona-detail">
+        Femme 18–30 ans, active sur Instagram et TikTok, sensible aux tendances mode accessibles.
+        Découvre la marque via les Reels et les vidéos produit. Achète en ligne ou vient en boutique
+        après avoir vu un contenu.
+      </div>
+    </div>
+    <div class="persona-card" style="margin-top:1rem">
+      <div class="persona-name">Segment secondaire — Ado & parent</div>
+      <div class="persona-detail">
+        Adolescent(e) 14–18 ans et parents achetant pour leurs enfants. Sensibles aux promotions
+        et au rapport qualité/prix. Trafic généré principalement par Google Shopping.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DÉMARCHE MARKETING -->
+<div class="section-header">
+  <span class="section-label">Démarche marketing</span>
+  <span class="section-num">C1.3 · C1.4 · C1.5</span>
+</div>
+<section class="demarche">
+  <div class="demarche-grid">
+    <div class="demarche-cell">
+      <div class="dc-num">01</div>
+      <div class="dc-title">Veille & observation</div>
+      <div class="dc-body">
+        J'ai analysé en continu les comptes Instagram et TikTok des concurrents locaux et des
+        marques de référence mode (Zara, H&M, Shein) pour identifier les formats qui engagent
+        et les tendances à adapter. J'ai utilisé les insights natifs Instagram et TikTok comme
+        boussole hebdomadaire pour ajuster ma production.
+      </div>
+    </div>
+    <div class="demarche-cell dark">
+      <div class="dc-num">02</div>
+      <div class="dc-title">Stratégie de contenu</div>
+      <div class="dc-body">
+        Sans charte éditoriale préexistante, j'ai défini ma propre ligne : Reels tendance pour
+        le reach organique, photos produit soignées pour la conversion, stories pour la proximité.
+        Fréquence : 4 à 6 posts par semaine sur Instagram, 3 à 4 vidéos sur TikTok.
+        Axe éditorial : "mode accessible, looks du quotidien, nouveautés en avant-première".
+      </div>
+    </div>
+    <div class="demarche-cell">
+      <div class="dc-num">03</div>
+      <div class="dc-title">Campagnes payantes</div>
+      <div class="dc-body">
+        J'ai géré les campagnes Google Shopping (achat) et Meta Ads (conversion & notoriété)
+        avec un budget inférieur à 500€/mois. Objectif : maximiser le trafic qualifié vers la
+        boutique Shopify et les visites en magasin. J'ai analysé les performances hebdomadairement
+        et ajusté les enchères et les visuels en conséquence.
+      </div>
+    </div>
+    <div class="demarche-cell">
+      <div class="dc-num">04</div>
+      <div class="dc-title">E-commerce & catalogue</div>
+      <div class="dc-body">
+        J'ai créé la boutique Shopify de zéro : architecture des collections, rédaction des
+        fiches produits, mise en ligne des photos, configuration des options de livraison et
+        de retour. J'assure également le SAV, la gestion des retours et remboursements,
+        et la modération des avis clients Google.
+      </div>
+    </div>
+    <div class="demarche-cell dark">
+      <div class="dc-num">05</div>
+      <div class="dc-title">Analyse & pilotage</div>
+      <div class="dc-body">
+        Suivi hebdomadaire des KPI via Google Analytics, Looker Studio, Hotjar (comportement
+        visiteurs) et les tableaux de bord natifs Shopify, Meta Ads Manager et Google Ads.
+        J'analyse les pages les plus visitées, les taux de rebond et les tunnels d'abandon
+        pour optimiser en continu l'expérience d'achat.
+      </div>
+    </div>
+    <div class="demarche-cell">
+      <div class="dc-num">06</div>
+      <div class="dc-title">Budget & investissements</div>
+      <div class="dc-body">
+        Gestion d'un budget publicitaire mensuel inférieur à 500€ réparti entre Google Ads
+        (campagnes Shopping) et Meta Ads (Facebook & Instagram). Optimisation du ROI par
+        ajustement des enchères et sélection des visuels les plus performants selon les
+        données de conversion.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIONS RÉALISÉES -->
+<div class="section-header">
+  <span class="section-label">Actions réalisées</span>
+  <span class="section-num">C1.4 · C1.5</span>
+</div>
+<section class="actions">
+  <div class="act-left">
+    <h2 class="block-title">Ce que j'ai <em>concrètement fait</em></h2>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Création & gestion des réseaux sociaux</h4>
+        <p>J'ai créé et animé les comptes Instagram, TikTok et Facebook de Tentation. Je produis les visuels sous Canva, je filme et monte les Reels et vidéos TikTok, je rédige les captions et gère les commentaires et DM.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Campagnes Meta Ads & Google Ads</h4>
+        <p>J'ai paramétré et piloté les campagnes publicitaires : ciblage audience, création des visuels d'annonce, définition des budgets quotidiens, analyse des performances et optimisation hebdomadaire.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Construction de la boutique Shopify</h4>
+        <p>J'ai créé la boutique e-commerce de zéro : choix du thème, architecture des collections, mise en ligne de 1 200+ références (photos, descriptions, prix, variantes), configuration des modes de livraison et de paiement.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>SAV & relation client</h4>
+        <p>Je gère les retours, remboursements, réclamations et litiges clients. J'assure un support multicanal (email, réseaux sociaux) et collecte et modère les avis Google.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Photographie produit</h4>
+        <p>Je réalise les prises de vue des nouvelles collections pour alimenter le site et les réseaux. Je prépare également les commandes et gère l'expédition des colis.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-dot"></div>
+      <div class="action-content">
+        <h4>Rédaction juridique & technique</h4>
+        <p>J'ai rédigé les CGV, mentions légales et politique de confidentialité du site. Je maintiens et fais évoluer la plateforme Shopify en fonction des besoins.</p>
+      </div>
+    </div>
+  </div>
+  <div class="act-right">
+    <h2 class="block-title">Preuves & <em>résultats</em></h2>
+    <p class="proof-label">Boutique Shopify — Juin 2026</p>
+    <img class="proof-img" src="shopify_tentation.png" alt="Dashboard Shopify Tentation"
+         onerror="this.style.display='none'">
+    <p class="proof-label">Google Ads — Juin 2026</p>
+    <img class="proof-img" src="IMG_5364.png" alt="Google Ads Tentation"
+         onerror="this.style.display='none'">
+    <img class="proof-img" src="IMG_5366.png" alt="Google Ads conversions"
+         onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- KPI -->
+<div class="section-header">
+  <span class="section-label">Résultats — Juin 2026</span>
+  <span class="section-num">Données au 18 juin 2026</span>
+</div>
+<section class="kpis-section">
+  <div class="kpis-grid">
+    <div class="kpi-cell">
+      <div class="kpi-val">1 204</div>
+      <div class="kpi-lab">Visites Shopify</div>
+      <div class="kpi-delta">1–18 juin 2026</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-val">9</div>
+      <div class="kpi-lab">Commandes</div>
+      <div class="kpi-delta">+800% vs mai</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-val">261€</div>
+      <div class="kpi-lab">Ventes totales</div>
+      <div class="kpi-delta">+772% vs mai</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-val">371</div>
+      <div class="kpi-lab">Clics Google Ads</div>
+      <div class="kpi-delta">CTR 17,20%</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-val">0,15€</div>
+      <div class="kpi-lab">CPC moyen</div>
+      <div class="kpi-delta">Coût total 56,22€</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-val">17,2%</div>
+      <div class="kpi-lab">CTR Google Ads</div>
+      <div class="kpi-delta">Moy. secteur : 2–3%</div>
+    </div>
+  </div>
+</section>
+
+<!-- BILAN -->
+<div class="section-header">
+  <span class="section-label">Compétences mobilisées & bilan</span>
+</div>
+<section class="bilan">
+  <div class="bilan-left">
+    <h2 class="block-title">Ce que cette expérience<br><em>m'a appris.</em></h2>
+    <p class="body-text">
+      Cette alternance m'a permis de développer une vision à 360° du marketing digital en conditions
+      réelles : de la stratégie de contenu à la gestion d'une boutique e-commerce complète, en
+      passant par le pilotage de campagnes payantes et la relation client.
+    </p>
+    <p class="body-text">
+      Gérer seule l'intégralité de la présence digitale d'une marque m'a appris à prioriser,
+      à prendre des décisions rapides basées sur la donnée, et à m'adapter en permanence.
+      Le CTR de 17,20% sur Google Ads — bien au-dessus de la moyenne sectorielle de 2–3% —
+      valide la pertinence des campagnes que j'ai construites et optimisées.
+    </p>
+    <div class="bilan-quote">
+      "J'ai construit la présence digitale de Tentation de zéro — du catalogue Shopify
+      aux campagnes payantes, en passant par chaque contenu publié."
+    </div>
+  </div>
+  <div class="bilan-right">
+    <h2 class="block-title" style="font-size:1.1rem;margin-bottom:1.25rem">Compétences du référentiel</h2>
+    <span class="compétence-tag">C1.1 — Veille sectorielle</span>
+    <span class="compétence-tag">C1.2 — Étude de marché</span>
+    <span class="compétence-tag">C1.3 — Stratégie mktg</span>
+    <span class="compétence-tag">C1.4.1 — Plan d'action mix</span>
+    <span class="compétence-tag">C1.4.2 — Ligne éditoriale</span>
+    <span class="compétence-tag">C1.5 — Budget & investissements</span>
+  </div>
+</section>
+
+<div class="project-footer">
+  <a href="index.html" class="pf-back">← Retour au portfolio</a>
+  <span class="pf-copy">© 2026 Zhou Clessy</span>
+</div>
+
+</body>
+</html>

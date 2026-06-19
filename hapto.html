@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAPTŌ — Création de startup de A à Z · Zhou Clessy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gd: #027545; --br: #282706; --gl: #60D8A7;
+    --gp: #E8F5EF; --cr: #FAFAF7; --tx: #1A1A14;
+    --mu: #5A6B5E; --bo: #C8DDD2; --border: 1px solid #C8DDD2;
+    --hapto-red: #8B2E1A; --hapto-gold: #B8960C; --hapto-green: #3D5A2A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans','Helvetica Neue',sans-serif; background: var(--cr); color: var(--tx); -webkit-font-smoothing: antialiased; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--cr); border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; padding: 0 2.5rem; height: 56px; }
+  .nav-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--mu); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
+  .nav-back:hover { color: var(--gd); }
+  .nav-logo { font-family: 'DM Serif Display',serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--gd); text-decoration: none; }
+  .nav-num { font-size: 0.65rem; color: var(--bo); letter-spacing: 0.1em; }
+
+  /* HERO */
+  .project-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; border-bottom: var(--border); }
+  .ph-left { background: var(--br); padding: 5rem 3.5rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: var(--border); }
+  .ph-eyebrow { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gl); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+  .ph-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gl); }
+  .ph-logo { font-family: 'DM Serif Display',serif; font-size: 3.5rem; color: #fff; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .ph-logo span { color: var(--hapto-gold); }
+  .ph-subtitle { font-family: 'DM Serif Display',serif; font-size: 1.3rem; font-style: italic; color: #8ABAA0; margin-bottom: 1.5rem; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .ph-tag { font-size: 0.65rem; padding: 4px 10px; background: rgba(96,216,167,0.1); color: var(--gl); border: 1px solid rgba(96,216,167,0.2); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .ph-right { background: var(--gp); display: flex; flex-direction: column; }
+  .ph-img-wrap { flex: 1; overflow: hidden; border-bottom: var(--border); }
+  .ph-img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; min-height: 280px; }
+  .ph-stats { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; }
+  .ph-stat { background: var(--gp); padding: 1.5rem; }
+  .ph-stat-val { font-family: 'DM Serif Display',serif; font-size: 1.8rem; color: var(--hapto-red); line-height: 1; }
+  .ph-stat-lab { font-size: 0.62rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  .section-header { display: flex; justify-content: space-between; align-items: baseline; padding: 1.1rem 2.5rem; border-bottom: var(--border); }
+  .section-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mu); }
+  .section-num { font-size: 0.65rem; color: var(--bo); }
+
+  .block-title { font-family: 'DM Serif Display',serif; font-size: 1.5rem; color: var(--tx); margin-bottom: 1.25rem; line-height: 1.2; }
+  .block-title em { font-style: italic; color: var(--gd); }
+  .body-text { font-size: 0.9rem; color: var(--mu); line-height: 1.85; margin-bottom: 1rem; }
+  .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .info-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.87rem; color: var(--tx); line-height: 1.5; }
+  .info-list li::before { content: '—'; color: var(--gd); flex-shrink: 0; margin-top: 1px; }
+
+  /* MARCHÉ */
+  .marche { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .marche-left { padding: 3.5rem; border-right: var(--border); }
+  .marche-right { padding: 3.5rem; background: var(--gp); }
+  .market-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.82rem; }
+  .market-table th { background: var(--gd); color: #fff; padding: 8px 12px; text-align: left; font-weight: 400; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .market-table td { padding: 8px 12px; border-bottom: var(--border); color: var(--tx); }
+  .market-table tr:last-child td { border-bottom: none; }
+  .market-table .good { color: var(--gd); font-weight: 500; }
+  .market-table .med { color: var(--hapto-gold); }
+  .market-table .bad { color: var(--mu); }
+  .stat-highlight { background: var(--cr); border: var(--border); border-left: 3px solid var(--gd); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+  .stat-highlight .val { font-family: 'DM Serif Display',serif; font-size: 1.4rem; color: var(--gd); }
+  .stat-highlight .lab { font-size: 0.78rem; color: var(--mu); line-height: 1.5; }
+
+  /* DÉMARCHE */
+  .demarche-grid { display: grid; grid-template-columns: repeat(3,1fr); background: var(--bo); gap: 1px; border-bottom: var(--border); }
+  .demarche-cell { background: var(--cr); padding: 2.5rem; }
+  .demarche-cell.dark { background: var(--br); }
+  .dc-num { font-family: 'DM Serif Display',serif; font-size: 3rem; color: var(--gp); line-height: 1; margin-bottom: 1rem; opacity: 0.35; }
+  .demarche-cell.dark .dc-num { color: var(--gl); opacity: 0.15; }
+  .dc-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gd); margin-bottom: 0.75rem; }
+  .demarche-cell.dark .dc-title { color: var(--gl); }
+  .dc-body { font-size: 0.87rem; color: var(--mu); line-height: 1.8; }
+  .demarche-cell.dark .dc-body { color: #8ABAA0; }
+  .tool-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.75rem; }
+  .tool-chip { font-size: 0.6rem; padding: 2px 7px; background: var(--gp); border: 1px solid var(--bo); color: var(--gd); text-transform: uppercase; letter-spacing: 0.04em; }
+  .demarche-cell.dark .tool-chip { background: rgba(96,216,167,0.08); border-color: rgba(96,216,167,0.2); color: var(--gl); }
+
+  /* PERSONA */
+  .persona-section { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .persona-left { padding: 3.5rem; border-right: var(--border); }
+  .persona-right { padding: 3.5rem; background: var(--gp); }
+  .persona-card { background: var(--cr); border: var(--border); border-top: 3px solid var(--hapto-red); padding: 1.75rem; }
+  .persona-name { font-family: 'DM Serif Display',serif; font-size: 1.2rem; color: var(--hapto-red); margin-bottom: 0.25rem; }
+  .persona-age { font-size: 0.72rem; color: var(--mu); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .persona-row { display: flex; gap: 0.75rem; margin-bottom: 0.6rem; font-size: 0.84rem; color: var(--tx); }
+  .persona-row::before { content: '→'; color: var(--gd); flex-shrink: 0; }
+
+  /* 5P */
+  .cinq-p { display: grid; grid-template-columns: repeat(5,1fr); background: var(--bo); gap: 1px; border-bottom: var(--border); }
+  .p-cell { background: var(--cr); padding: 2rem 1.5rem; }
+  .p-cell:nth-child(odd) { background: var(--gp); }
+  .p-letter { font-family: 'DM Serif Display',serif; font-size: 2.5rem; color: var(--gd); opacity: 0.2; line-height: 1; margin-bottom: 0.5rem; }
+  .p-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gd); margin-bottom: 0.75rem; }
+  .p-body { font-size: 0.83rem; color: var(--mu); line-height: 1.75; }
+
+  /* SMART */
+  .smart-section { border-bottom: var(--border); background: var(--br); }
+  .smart-grid { display: grid; grid-template-columns: repeat(5,1fr); background: #3D3A20; gap: 1px; }
+  .smart-cell { background: var(--br); padding: 2rem 1.5rem; }
+  .smart-letter { font-family: 'DM Serif Display',serif; font-size: 2.2rem; color: var(--gl); opacity: 0.25; line-height: 1; margin-bottom: 0.5rem; }
+  .smart-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gl); margin-bottom: 0.75rem; }
+  .smart-body { font-size: 0.83rem; color: #8ABAA0; line-height: 1.75; }
+
+  /* CANEDITORIAL */
+  .editorial { display: grid; grid-template-columns: 1fr 1fr; border-bottom: var(--border); }
+  .editorial-left { padding: 3.5rem; border-right: var(--border); }
+  .editorial-right { padding: 3.5rem; background: var(--gp); }
+  .editorial-row { display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; padding: 1rem 0; border-bottom: var(--border); align-items: start; }
+  .editorial-row:last-child { border-bottom: none; }
+  .editorial-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gd); }
+  .editorial-value { font-size: 0.85rem; color: var(--tx); line-height: 1.7; }
+  .proof-img { width: 100%; display: block; border: var(--border); margin-bottom: 1rem; }
+  .proof-label { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--mu); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+  .proof-label:first-child { margin-top: 0; }
+
+  /* BILAN */
+  .bilan { display: grid; grid-template-columns: 2fr 1fr; border-bottom: var(--border); }
+  .bilan-left { padding: 3.5rem; border-right: var(--border); }
+  .bilan-right { padding: 3.5rem; background: var(--gp); }
+  .bilan-quote { font-family: 'DM Serif Display',serif; font-style: italic; font-size: 1.2rem; color: var(--gd); line-height: 1.6; border-left: 3px solid var(--gd); padding-left: 1.5rem; margin-top: 1.5rem; }
+  .competence-tag { display: inline-block; font-size: 0.65rem; padding: 4px 10px; background: var(--gp); border: 1px solid var(--bo); color: var(--gd); margin: 3px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .project-footer { background: var(--br); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #3D3A20; }
+  .pf-back { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: var(--gl); text-decoration: none; letter-spacing: 0.06em; opacity: 0.7; transition: opacity 0.2s; }
+  .pf-back:hover { opacity: 1; }
+  .pf-copy { font-size: 0.65rem; color: #4A5A48; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  @media (max-width: 900px) {
+    .project-hero, .marche, .persona-section, .editorial, .bilan { grid-template-columns: 1fr; }
+    .ph-left, .marche-left, .persona-left, .editorial-left, .bilan-left { border-right: none; border-bottom: var(--border); }
+    .demarche-grid, .cinq-p { grid-template-columns: 1fr; }
+    .smart-grid { grid-template-columns: repeat(3,1fr); }
+    nav, .section-header { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .ph-left, .marche-left, .marche-right, .persona-left, .persona-right, .editorial-left, .editorial-right, .bilan-left, .bilan-right, .demarche-cell, .p-cell, .smart-cell { padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Retour au portfolio</a>
+  <a href="index.html" class="nav-logo">DAYI</a>
+  <span class="nav-num">02 / 04</span>
+</nav>
+
+<!-- HERO -->
+<section class="project-hero">
+  <div class="ph-left">
+    <p class="ph-eyebrow">Projet école · Équipe VEGA · 2025–2026</p>
+    <div class="ph-logo">HAPT<span>Ō</span></div>
+    <div class="ph-subtitle">Le design sensoriel.</div>
+    <div class="ph-meta">
+      <span class="ph-tag">Étude de marché</span>
+      <span class="ph-tag">Personas</span>
+      <span class="ph-tag">Stratégie 5P</span>
+      <span class="ph-tag">Objectifs SMART</span>
+      <span class="ph-tag">Charte éditoriale</span>
+      <span class="ph-tag">Reporting</span>
+    </div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-img-wrap">
+      <img class="ph-img" src="photo.jpeg" alt="Site HAPTŌ — La planche sensorielle"
+           onerror="this.style.background='var(--gp)'">
+    </div>
+    <div class="ph-stats">
+      <div class="ph-stat"><div class="ph-stat-val">80</div><div class="ph-stat-lab">Répondants</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">4,7Md€</div><div class="ph-stat-lab">Marché jouets FR</div></div>
+      <div class="ph-stat"><div class="ph-stat-val">+15%</div><div class="ph-stat-lab">Croissance Montessori</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTE -->
+<div class="section-header">
+  <span class="section-label">Contexte & problématique</span>
+  <span class="section-num">C1.1 · C1.2</span>
+</div>
+<section class="marche">
+  <div class="marche-left">
+    <h2 class="block-title">Une planche sensorielle<br><em>modulaire & éco-conçue.</em></h2>
+    <p class="body-text">
+      Dans le cadre du projet MDS, l'équipe VEGA a conçu HAPTŌ de A à Z : une planche
+      d'éveil sensorielle d'inspiration Montessori, modulaire et éco-responsable, destinée
+      aux enfants de 1 à 4 ans.
+    </p>
+    <p class="body-text">
+      À l'ère des écrans omniprésents, les parents CSP+ cherchent des alternatives
+      stimulantes pour le développement de leurs enfants. HAPTŌ répond à ce besoin :
+      un objet tactile, évolutif, fabriqué en matériaux naturels.
+    </p>
+    <p class="body-text">
+      Au sein de l'équipe, j'ai pris en charge l'intégralité du volet marketing digital :
+      étude de marché, personas, stratégie 5P, objectifs SMART, calendrier éditorial
+      et reporting Instagram.
+    </p>
+    <ul class="info-list">
+      <li>Projet scolaire conduit sur une année académique complète</li>
+      <li>Équipe de 5 — rôle : responsable marketing digital</li>
+      <li>Site e-commerce livrable : haptokids.fr</li>
+      <li>Prix de lancement : 50€ (planche Small) à 90€ (planche Large)</li>
+    </ul>
+  </div>
+  <div class="marche-right">
+    <h2 class="block-title">Analyse du <em>marché</em></h2>
+    <div class="stat-highlight"><span class="val">4,7 Md€</span><div class="lab">Marché du jouet en France 2025 (+7,1% vs 2024)</div></div>
+    <div class="stat-highlight"><span class="val">+15%</span><div class="lab">Croissance segment Montessori 2025</div></div>
+    <div class="stat-highlight"><span class="val">TCAC 7,2%</span><div class="lab">Hausse Montessori bois/sensoriel jusqu'en 2030</div></div>
+    <table class="market-table">
+      <thead>
+        <tr><th>Niveau</th><th>Maturité</th><th>Concurrence</th><th>Opportunité</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Marché jouet global</td><td>Mature</td><td class="bad">Forte</td><td class="bad">Limitée</td></tr>
+        <tr><td>Éveil / Montessori</td><td>En croissance</td><td class="med">Modérée</td><td class="med">Bonne</td></tr>
+        <tr><td>Busy boards modulaires</td><td>Émergent/niche</td><td class="good">Faible</td><td class="good">Forte ✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- DÉMARCHE -->
+<div class="section-header">
+  <span class="section-label">Démarche marketing</span>
+  <span class="section-num">C1.1 → C1.5</span>
+</div>
+<div class="demarche-grid">
+  <div class="demarche-cell">
+    <div class="dc-num">01</div>
+    <div class="dc-title">Veille & analyse</div>
+    <div class="dc-body">Analyse documentaire des tendances du marché jouet et Montessori. Identification des opportunités et menaces via PESTEL et 5 forces de Porter. Veille concurrentielle approfondie avec mapping des acteurs (Chicco, Grimm's, Pikler...) et analyse de leur 5P.</div>
+    <div class="tool-chips"><span class="tool-chip">PESTEL</span><span class="tool-chip">5 forces Porter</span><span class="tool-chip">Mapping concurrentiel</span></div>
+  </div>
+  <div class="demarche-cell dark">
+    <div class="dc-num">02</div>
+    <div class="dc-title">Étude de marché</div>
+    <div class="dc-body">Questionnaire en ligne diffusé auprès de 80 répondants pour quantifier les habitudes d'achat, la sensibilité prix et l'intérêt pour l'éco-responsable. Complété par des entretiens qualitatifs pour approfondir les motivations et freins à l'achat.</div>
+    <div class="tool-chips"><span class="tool-chip">Questionnaire 80 répondants</span><span class="tool-chip">Entretiens qualitatifs</span></div>
+  </div>
+  <div class="demarche-cell">
+    <div class="dc-num">03</div>
+    <div class="dc-title">Personas & SWOT</div>
+    <div class="dc-body">Construction de 4 personas représentatifs à partir des données collectées, complétés par une Empathy Map pour approfondir la compréhension des besoins. Analyse SWOT du projet pour identifier les forces distinctives et les risques à anticiper.</div>
+    <div class="tool-chips"><span class="tool-chip">4 Personas</span><span class="tool-chip">Empathy Map</span><span class="tool-chip">SWOT</span></div>
+  </div>
+  <div class="demarche-cell">
+    <div class="dc-num">04</div>
+    <div class="dc-title">Stratégie 5P + SONCASE/CAB</div>
+    <div class="dc-body">Définition de la stratégie marketing complète : Produit modulaire éco-conçu, Prix 50–90€, Place e-commerce direct, Promotion via Instagram/Pinterest, Personnes (service client premium). Argumentaire de vente structuré avec SONCASE et CAB pour chaque segment.</div>
+    <div class="tool-chips"><span class="tool-chip">5P</span><span class="tool-chip">SONCASE</span><span class="tool-chip">CAB</span></div>
+  </div>
+  <div class="demarche-cell dark">
+    <div class="dc-num">05</div>
+    <div class="dc-title">Objectifs SMART</div>
+    <div class="dc-body">Définition d'objectifs mesurables alignés sur la stratégie : atteindre 500 followers Instagram en 3 mois, générer 50 visites/jour sur le site en M+2, obtenir un taux d'engagement &gt;4% sur les publications produit, et atteindre 20 commandes le premier mois.</div>
+    <div class="tool-chips"><span class="tool-chip">Spécifique</span><span class="tool-chip">Mesurable</span><span class="tool-chip">Atteignable</span><span class="tool-chip">Réaliste</span><span class="tool-chip">Temporel</span></div>
+  </div>
+  <div class="demarche-cell">
+    <div class="dc-num">06</div>
+    <div class="dc-title">Calendrier éditorial & reporting</div>
+    <div class="dc-body">Construction d'un calendrier éditorial Instagram sur 4 semaines : formats définis (Reels discovery, carrousels pédagogiques, UGC parents, stories produit), fréquence, sujets et champs sémantiques. Reporting hebdomadaire des KPI pour ajuster la stratégie.</div>
+    <div class="tool-chips"><span class="tool-chip">Calendrier éditorial</span><span class="tool-chip">4 formats contenu</span><span class="tool-chip">Reporting KPI</span></div>
+  </div>
+</div>
+
+<!-- PERSONAS -->
+<div class="section-header">
+  <span class="section-label">Cible & personas</span>
+  <span class="section-num">C1.2 · C1.3</span>
+</div>
+<section class="persona-section">
+  <div class="persona-left">
+    <h2 class="block-title">4 segments <em>identifiés.</em></h2>
+    <p class="body-text">À partir du questionnaire et des entretiens, j'ai construit 4 personas représentatifs et une Empathy Map pour approfondir la compréhension des motivations d'achat. Le segment principal concentre l'essentiel de la stratégie marketing.</p>
+    <div class="persona-card" style="margin-top:1.5rem">
+      <div class="persona-name">Sophie — Persona principal</div>
+      <div class="persona-age">32 ans · Parent · CSP+ · Urban</div>
+      <div class="persona-row">Cherche des alternatives aux écrans pour son enfant de 2 ans</div>
+      <div class="persona-row">Sensible à l'éco-responsable, prête à payer plus pour la qualité</div>
+      <div class="persona-row">Découvre les produits via Instagram et les recommandations de communautés parentales</div>
+      <div class="persona-row">Frein principal : incertitude sur la durabilité et la sécurité des matériaux</div>
+    </div>
+  </div>
+  <div class="persona-right">
+    <h2 class="block-title">Segments <em>secondaires</em></h2>
+    <div class="persona-card">
+      <div class="persona-name">Marie — Professionnelle petite enfance</div>
+      <div class="persona-age">38 ans · Éducatrice · Crèche / MAM</div>
+      <div class="persona-row">Cherche du matériel pédagogique certifié pour son établissement</div>
+      <div class="persona-row">Sensible à la modularité et à la longévité du produit</div>
+    </div>
+    <div class="persona-card" style="margin-top:1rem">
+      <div class="persona-name">Paul — Acheteur cadeau</div>
+      <div class="persona-age">55 ans · Grand-parent · CSP+</div>
+      <div class="persona-row">Achète pour offrir à Noël ou pour une naissance</div>
+      <div class="persona-row">Priorité : produit "beau", sûr, français — budget large</div>
+    </div>
+    <div class="persona-card" style="margin-top:1rem">
+      <div class="persona-name">Léa — Profil neuroatypique</div>
+      <div class="persona-age">Parent · Enfant TSA / TDAH</div>
+      <div class="persona-row">Cherche des outils de stimulation sensorielle adaptés</div>
+      <div class="persona-row">Prescripteur fort via communautés spécialisées</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5P -->
+<div class="section-header">
+  <span class="section-label">Stratégie 5P</span>
+  <span class="section-num">C1.3 · C1.4</span>
+</div>
+<section class="cinq-p">
+  <div class="p-cell">
+    <div class="p-letter">P</div>
+    <div class="p-title">Produit</div>
+    <div class="p-body">Planche sensorielle modulaire en bois éco-certifié. 3 tailles (Small 20 trous / Medium 25 / Large 30). Modules interchangeables. Design premium, couleurs organiques. Note 4.8/5 sur 124 avis.</div>
+  </div>
+  <div class="p-cell">
+    <div class="p-letter">P</div>
+    <div class="p-title">Prix</div>
+    <div class="p-body">Positionnement premium accessible : 50€ (Small) à 90€ (Large). Prix cohérent avec les concurrents Montessori haut de gamme. Livraison et retour gratuits pour réduire le frein à l'achat.</div>
+  </div>
+  <div class="p-cell">
+    <div class="p-letter">P</div>
+    <div class="p-title">Place</div>
+    <div class="p-body">Vente directe via haptokids.fr (e-commerce D2C). Canal principal e-commerce représente 22–25% des ventes sur ce segment. Maîtrise de la relation client et des marges. Livraison gratuite.</div>
+  </div>
+  <div class="p-cell">
+    <div class="p-letter">P</div>
+    <div class="p-title">Promotion</div>
+    <div class="p-body">Stratégie content-led sur Instagram et Pinterest. Ciblage parents 25–40 ans CSP+. Calendrier éditorial 4 formats : Reels discovery, carrousels pédagogiques, UGC parents, stories produit. SEO blog.</div>
+  </div>
+  <div class="p-cell">
+    <div class="p-letter">P</div>
+    <div class="p-title">Personnes</div>
+    <div class="p-body">Service client premium : accompagnement personnalisé, réponse sous 24h, retour gratuit 30 jours. Communauté de parents ambassadeurs. Partenariats avec éducateurs Montessori et influenceurs parentalité.</div>
+  </div>
+</section>
+
+<!-- OBJECTIFS SMART -->
+<div class="section-header">
+  <span class="section-label">Objectifs SMART</span>
+  <span class="section-num">C1.3</span>
+</div>
+<section class="smart-section">
+  <div class="smart-grid">
+    <div class="smart-cell"><div class="smart-letter">S</div><div class="smart-title">Spécifique</div><div class="smart-body">Atteindre 500 abonnés Instagram qualifiés (parents 25–40 ans, France) dans les 3 premiers mois suivant le lancement.</div></div>
+    <div class="smart-cell"><div class="smart-letter">M</div><div class="smart-title">Mesurable</div><div class="smart-body">KPI suivis : followers, reach, taux d'engagement (&gt;4%), trafic site, taux de conversion, nombre de commandes.</div></div>
+    <div class="smart-cell"><div class="smart-letter">A</div><div class="smart-title">Atteignable</div><div class="smart-body">Benchmarking des comptes similaires dans la niche Montessori : croissance de 150–200 abonnés/mois réaliste avec 4 posts/semaine.</div></div>
+    <div class="smart-cell"><div class="smart-letter">R</div><div class="smart-title">Réaliste</div><div class="smart-body">Budget marketing limité compensé par une stratégie organique forte et un produit à fort potentiel viral (UGC, unboxing, résultats enfants).</div></div>
+    <div class="smart-cell"><div class="smart-letter">T</div><div class="smart-title">Temporel</div><div class="smart-body">M+1 : 150 abonnés / M+2 : 50 visites/jour sur site / M+3 : 500 abonnés / Noël : pic de CA (30% du CA annuel estimé).</div></div>
+  </div>
+</section>
+
+<!-- CALENDRIER ÉDITORIAL -->
+<div class="section-header">
+  <span class="section-label">Calendrier éditorial & ligne de contenu</span>
+  <span class="section-num">C1.4.2</span>
+</div>
+<section class="editorial">
+  <div class="editorial-left">
+    <h2 class="block-title">Ligne éditoriale <em>définie.</em></h2>
+    <div class="editorial-row">
+      <div class="editorial-label">Cible</div>
+      <div class="editorial-value">Parents 25–40 ans CSP+, sensibles à l'éveil Montessori et à l'éco-responsable. Communautés parentales Instagram et groupes Facebook.</div>
+    </div>
+    <div class="editorial-row">
+      <div class="editorial-label">Ton</div>
+      <div class="editorial-value">Chaleureux, expert et rassurant. Pas condescendant. On parle parent à parent, avec un fond pédagogique crédible.</div>
+    </div>
+    <div class="editorial-row">
+      <div class="editorial-label">Fréquence</div>
+      <div class="editorial-value">4 publications par semaine : 2 Reels + 1 carrousel + 1 story interactive. Stories quotidiennes en période de lancement.</div>
+    </div>
+    <div class="editorial-row">
+      <div class="editorial-label">Formats</div>
+      <div class="editorial-value">Reels discovery (reach) · Carrousels pédagogiques (engagement) · UGC parents (preuve sociale) · Stories produit (conversion)</div>
+    </div>
+    <div class="editorial-row">
+      <div class="editorial-label">Champs sémantiques</div>
+      <div class="editorial-value">#Montessori #EveilBébé #JouetBois #EcoResponsable #MotricitéFine #BusyBoard #ParentalitéPositive</div>
+    </div>
+    <div class="editorial-row" style="border-bottom:none">
+      <div class="editorial-label">Reporting</div>
+      <div class="editorial-value">Analyse hebdomadaire des KPI Instagram (reach, impressions, engagement rate, clics lien bio) pour ajuster les formats et les horaires de publication.</div>
+    </div>
+  </div>
+  <div class="editorial-right">
+    <h2 class="block-title">Preuves <em>visuelles</em></h2>
+    <p class="proof-label">Identité visuelle HAPTŌ — Brandboard</p>
+    <img class="proof-img" src="photo.jpeg" alt="Identité visuelle HAPTŌ"
+         onerror="this.style.display='none'">
+    <p class="proof-label">Site e-commerce — haptokids.fr</p>
+    <p style="font-size:0.83rem;color:var(--mu);line-height:1.7">
+      La planche sensorielle est commercialisée sur
+      <a href="https://haptokids.fr" target="_blank" rel="noopener"
+         style="color:var(--gd)">haptokids.fr</a> —
+      note 4.8/5 sur 124 avis, 3 formats disponibles (Small · Medium · Large),
+      livraison et retour gratuits.
+    </p>
+  </div>
+</section>
+
+<!-- BILAN -->
+<div class="section-header">
+  <span class="section-label">Compétences mobilisées & bilan</span>
+</div>
+<section class="bilan">
+  <div class="bilan-left">
+    <h2 class="block-title">Ce que ce projet<br><em>m'a apporté.</em></h2>
+    <p class="body-text">
+      HAPTŌ est le projet qui m'a permis de mettre en pratique l'intégralité d'une démarche
+      marketing structurée : de l'analyse macro-économique (PESTEL, 5 forces de Porter)
+      jusqu'au calendrier éditorial opérationnel, en passant par la construction de personas
+      et la définition d'une stratégie 5P complète.
+    </p>
+    <p class="body-text">
+      Contrairement à mon alternance où je gérais au quotidien, ici j'ai dû penser la
+      stratégie avant l'exécution — partir des données de marché pour justifier chaque
+      décision. Cette démarche analytique est désormais au cœur de ma façon de travailler.
+    </p>
+    <div class="bilan-quote">
+      "J'ai mené l'étude de marché de A à Z — 80 répondants, analyse PESTEL, mapping
+      concurrentiel — et traduit ces insights en une stratégie marketing actionnable."
+    </div>
+  </div>
+  <div class="bilan-right">
+    <h2 class="block-title" style="font-size:1.1rem;margin-bottom:1.25rem">Compétences du référentiel</h2>
+    <span class="competence-tag">C1.1 — Veille sectorielle</span>
+    <span class="competence-tag">C1.2 — Étude de marché</span>
+    <span class="competence-tag">C1.3 — Stratégie mktg</span>
+    <span class="competence-tag">C1.4.1 — Plan d'action 5P</span>
+    <span class="competence-tag">C1.4.2 — Ligne éditoriale</span>
+    <span class="competence-tag">C1.5 — Budget prévisionnel</span>
+    <div style="margin-top:2rem;padding-top:1.5rem;border-top:var(--border)">
+      <p style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--mu);margin-bottom:0.75rem">Outils utilisés</p>
+      <span class="competence-tag">PESTEL</span>
+      <span class="competence-tag">SWOT</span>
+      <span class="competence-tag">5 forces Porter</span>
+      <span class="competence-tag">Empathy Map</span>
+      <span class="competence-tag">SONCASE</span>
+      <span class="competence-tag">CAB</span>
+      <span class="competence-tag">Objectifs SMART</span>
+    </div>
+  </div>
+</section>
+
+<div class="project-footer">
+  <a href="index.html" class="pf-back">← Retour au portfolio</a>
+  <span class="pf-copy">© 2026 Zhou Clessy</span>
+</div>
+
+</body>
+</html>
